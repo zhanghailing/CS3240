@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello, WebVR! - A-Frame</title>
+  <meta name="description" content="Hello, WebVR! - A-Frame">
+  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+   <script src="https://unpkg.com/aframe-animation-component@4.0.0/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+</head>
+<body>
+<a-scene>
+  <a-assets>
+    <a-asset-item id="person"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-P-LOW-001.DAE?1521013848543"></a-asset-item>
+    <!--<a-asset-item id="testHuman" src="https://www.dropbox.com/s/y71hytafskvq895/testhuman.json"></a-asset-item>-->
+    <img id="person-mtl"
+         src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-P-LOW-001c.jpg?1521014521048"/>
+    <a-asset-item id="person-texture"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-P-LOW-001b.jpg?1521014517721"></a-asset-item>
+    <!--         <a-asset-item id="person-texture" src="assets/D3D-P-LOW-001.DAE"></a-asset-item> -->
+    <a-asset-item id="testPerson"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-LoPolyPeopleVol1-Sample-Collada.zip?1521016412014"></a-asset-item>
+
+    <!-- furniture assets-->
+    <a-asset-item id="fishtank-obj"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmodel.obj?1521032649505"></a-asset-item>
+    <a-asset-item id="fishtank-mtl"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmaterials.mtl?1521032647201"></a-asset-item>
+    <a-asset-item id="printer-obj"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fprinter-model.obj?1521033095947"></a-asset-item>
+    <a-asset-item id="printer-mtl"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fprinter-materials.mtl?1521033095804"></a-asset-item>
+    <a-asset-item id="piano-obj"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fpiano-model.obj?1521033368317"></a-asset-item>
+    <a-asset-item id="piano-mtl"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fpiano-materials.mtl?1521033367781"></a-asset-item>
+
+    <!--   people       -->
+    <a-asset-item id="man-running"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FMan_Pose017.gltf?1521025645899"></a-asset-item>
+    <a-asset-item id="people-sitting-group"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-06.gltf?1521031190191"></a-asset-item>
+    <a-asset-item id="people-group"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F53ab794c9cfbb.gltf?1521029373502"></a-asset-item>
+    <a-asset-item id="man-with-bag"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FMan_walking_N120814.gltf?1521030349166"></a-asset-item>
+    <a-asset-item id="man-standing"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ffile.gltf?1521032413181"></a-asset-item>
+    <a-asset-item id="man-sitting"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ffile.gltf?1521032098789"></a-asset-item>
+    <a-asset-item id="people-group-wandering"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-02.gltf?1521032987421"></a-asset-item>
+
+    <a-asset-item id="texture-wood"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F1-fine-wood-seamless.jpg?1521025660092"></a-asset-item>
+    <img id="skyTexture"
+         src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fwallpaper.png?1521031567565">
+    <!-- icon images -->
+    <img id="teacherIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbookshelf%20wrap%20remake.png?1521708247203">
+    <img id="vetIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fdog%20wrap%20remake.png?1521712448160">
+    <img id="musicianIcon" src ="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmusician%20wrap%20remake.png?1521712448615">
+    <img id="computingIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fstudent%20wrap%20remake.png?1521712448392">
+    <script id="bubble-asset" type="text/html"> 
+      <a-entity>
+          <a-sphere color="#CCC" radius="0.1" position="0 0.1 0" ></a-sphere>
+          <a-sphere color="#CCC" radius="0.17" position="0 0.5 0" ></a-sphere>
+          <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.5" position="0 1.3 0" animation__rotate="property: rotation; dur: 4000;easing: linear; loop: true; to: 0 360 0"></a-sphere>
+      </a-entity>
+    </script>
+  </a-assets>
+
+
+  <a-sky id="background" src="#skyTexture" theta-length="90" radius="30"></a-sky>
+  <a-cylinder id="ground" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ffloor.png?1521031899942"
+              radius="32" height="0.1"></a-cylinder>
+  <a-plane color="#CCC" height="100" width="100" rotation="-90 0 0"></a-plane>
+  <a-entity position="0 2.2 4">
+    <a-entity camera look-controls wasd-controls>
+      <!--<a-entity cursor="fuse: true; fuseTimeout: 500"
+                position="0 0 1"
+                geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                material="color: black; shader: flat">
+      </a-entity>-->
+
+      <!-- cursor-->
+      <a-entity position="0 0 -0.1"
+                geometry="primitive: ring; radiusOuter: 0.0022;
+                          radiusInner: 0.0015;"
+                material="color: cyan; shader: flat"
+                cursor="maxDistance: 30; fuse: true; fuseTimeout: 3000">
+      </a-entity>
+    </a-entity>
+  
+  <a-entity id="introScene" position = "0 -0.2 -4"> 
+    <a-text value="Welcome to SOCA" position="-2.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
+    <a-text id="startButton" value="Click to Begin" position="-2.2 2 -4" tab-size="5"
+            height="20" color="#000" scale="3 3 3">
+      <!-- primitive rectangle acting as button -->
+      <a-box color ="orange" position="0.7 0 -0.01" onclick="nextScene()"  depth="0.01" height="0.7" width="1.5" ></a-box>
+    </a-text>
+  </a-entity> 
+  
+
+
+  <!-- cursor -->
+  <!--        <a-entity position="0 2.2 4">
+      <a-entity camera look-controls>
+        <a-entity position="0 0 -3"
+                  geometry="primitive: ring; radiusOuter: 0.30;
+                            radiusInner: 0.20;"
+                  material="color: cyan; shader: flat"
+                  cursor="maxDistance: 30; fuse: true">
+          <a-animation begin="click" easing="ease-in" attribute="scale"
+               fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+          <a-animation begin="fusing" easing="ease-in" attribute="scale"
+               fill="forwards" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-entity>
+      </a-entity>
+    </a-entity> -->
+
+    <!-- repositioning of entities due to camera -->
+    <a-entity position="0 -2 -4" id = "mainGameScene" visible = "false">
+      <a-text id="score" value="Score:0" position="0 0.1 -3" rotation="-90 0 0"　tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
+ 
+      <!--    Models    -->
+      <!--  Man Running      -->
+<!--       <a-entity id="bubble" position="5 4 -5">
+        <a-sphere color="#CCC" radius="0.1" position="0 0.1 0" ></a-sphere>
+        <a-sphere color="#CCC" radius="0.17" position="0 0.5 0" ></a-sphere>
+        <a-sphere src="#teacherIcon" color="#CCC" cursor-listener radius="0.5" position="0 1.3 0" rotation="0 -90 0"></a-sphere>
+      </a-entity> -->
+       <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="5 4 -5"></a-entity>
+      <a-entity gltf-model="#man-running" scale="6 6 6" rotation="-90 0 0" position="5 2 -5"></a-entity>
+      <a-entity
+        gltf-model="url(https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-P-LOW-001.DAE?1521013848543)"
+        scale="6 6 6" rotation="-90 0 0" position="0 0 0"></a-entity>
+      <!--  A group of sitting people -->
+      <a-entity gltf-model="#people-sitting-group" scale="0.08 0.08 0.08" rotation="0 0 0"
+                position="10 0 -5"></a-entity>
+      <!--  A group of people      -->
+      <a-entity gltf-model="#people-group" scale="0.1 0.1 0.1 " rotation="0 0 0" position="-5 0 -5"></a-entity>
+      <!--  Man with Bag      -->
+      <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="-10 2.5 -5"></a-entity>
+      <a-entity gltf-model="#man-with-bag" scale="0.025 0.025 0.025" rotation="0 180 0" position="-10 0 -5"></a-entity>
+
+      <!-- Two men having conversation with each other, in the following 2 lines of code-->
+      <!-- Characters properly scaled for the 3 assets below, on the left-->
+      <!--  Man standing      -->
+      <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="-16 2.5 -5"></a-entity>
+      <a-entity gltf-model="#man-standing" scale="0.018 0.018 0.018" rotation="0 -90 0" position="-16 0 -5"></a-entity>
+      <!--  Man sitting down      --> <!-- Actually this is still man standing-->
+      <a-entity gltf-model="#man-sitting" scale="0.018 0.018 0.018" rotation="0 90 0" position="-15 0 -4.5"></a-entity>
+      <!--  A group wandering around      -->
+      <a-entity gltf-model="#people-group-wandering" scale="0.05 0.05 0.05" rotation="0 90 0"
+                position="-19 0 -5"></a-entity>
+
+      <!-- furniture -->
+      <a-obj-model src="#fishtank-obj" mtl="#fishtank-mtl" scale="2 2 2" position="4 1.5 3">
+        <a-box position="0 -0.3 0" depth="0.6" height="0.5" width="0.8" color="#000" shadow></a-box>
+      </a-obj-model>
+      <a-obj-model src="#printer-obj" mtl="#printer-mtl" scale="0.9 0.9 0.9" position="4 1.5 5"></a-obj-model>
+      <a-obj-model src="#piano-obj" mtl="#piano-mtl" scale="0.6 0.6 0.6" position="8 1 -10"></a-obj-model>
+
+      <!-- default items
+      <a-torus-knot position ="-2 0 -3" rotation="0 0 0" color="blue" shadow></a-torus-knot>
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+      -->
+
+      <!-- table -->
+      
+      
+      <a-box position="-1 1.2 5" color="#a86e3c" depth="5" height="0.5" width="2.7" scale="0.4 0.4 0.4">
+        <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "0 1 0"></a-entity>
+        <a-box position="-1 -1.5 2.2" color="#87572d" depth="0.3" height="3" width="0.3">
+        </a-box>
+        <a-box position="1.1 -1.5 2.2" color="#87572d" depth="0.3" height="3" width="0.3">
+        </a-box>
+        <a-box position="-1 -1.5 -2.2" color="#87572d" depth="0.3" height="3" width="0.3">
+        </a-box>
+        <a-box position="1.1 -1.5 -2.2" color="#87572d" depth="0.3" height="3" width="0.3">
+        </a-box>
+      </a-box>
+
+    </a-entity>
+  </a-entity>
+    <script>
+
+        var count=0;
+        var y=1.3;
+        var radius=0.5;
+        var i;
+      // Component to change to a sequential color on click.
+      AFRAME.registerComponent('cursor-listener', {   
+        init: function () {
+          this.el.addEventListener('mouseenter', function (evt) {
+            // this.setAttribute('style', 'transition','radius 3s linear');
+            // this.setAttribute('color', 'green');
+            this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 15;to:#0F0');
+            this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 1.3');       
+            this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0 2 0');
+            console.log('I was mouse enter at: ', evt.detail.intersection.point);
+          });
+          this.el.addEventListener('mouseleave', function (evt) {
+            this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 1;to:#FFF');
+            // this.removeAttribute('animation__color');
+            // this.setAttribute('color','white');
+            this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0.5');
+            this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0 1.3 0');      
+            // this.setAttribute('radius', '0.5');
+            // this.setAttribute('position','0 1.3 0');
+            console.log('I was mouse enter at: ', evt.detail.intersection.point);
+          });
+          this.el.addEventListener('click', function (evt) {
+            this.closest("a-entity").setAttribute('visible', 'false')
+            // y=1.3;
+            // radius=0.5;
+            console.log('I was clicked at: ', evt.detail.intersection.point);
+            count++;
+            document.getElementById('score').setAttribute('value', 'score: '+count);
+            console.log(count);
+          });
+        }
+      });
+    </script>
+</a-scene>
+  <script type="text/javascript">
+
+  function nextScene() {
+    document.getElementById('introScene').setAttribute('visible', 'false')
+    document.getElementById('mainGameScene').setAttribute('visible', 'true')
+  }
+  </script>
+</body>
+</html>
