@@ -1,12 +1,12 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>Hello, WebVR! - A-Frame</title>
   <meta name="description" content="Hello, WebVR! - A-Frame">
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 <!--   <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script> -->
-  <script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>
+  <!--<script src="https://cdn.rawgit.com/zcanter/aframe-gradient-sky/master/dist/gradientsky.min.js"></script>-->
   <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+  <script src="https://unpkg.com/aframe-extras@4.0.0/dist/aframe-extras.controls.min.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.0.0/dist/aframe-extras.min.js"></script>
    <script src="https://unpkg.com/aframe-animation-component@4.0.0/dist/aframe-animation-component.min.js"></script>
   <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
@@ -41,32 +41,50 @@
     <a-asset-item id="testPerson"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FD3D-LoPolyPeopleVol1-Sample-Collada.zip?1521016412014"></a-asset-item>
 
-    <!-- furniture assets-->
-    <a-asset-item id="fishtank-obj"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmodel.obj?1521032649505"></a-asset-item>
-    <a-asset-item id="fishtank-mtl"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmaterials.mtl?1521032647201"></a-asset-item>
-    <a-asset-item id="printer-obj"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fprinter-model.obj?1521033095947"></a-asset-item>
-    <a-asset-item id="printer-mtl"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fprinter-materials.mtl?1521033095804"></a-asset-item>
-    <a-asset-item id="piano-obj"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fpiano-model.obj?1521033368317"></a-asset-item>
-    <a-asset-item id="piano-mtl"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fpiano-materials.mtl?1521033367781"></a-asset-item>
-    <a-asset-item id="barmaterials-mtl"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbarmaterials.mtl?1522258922814"></a-asset-item>
-     <a-asset-item id="barinterior-obj"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbarinterior.obj?1522258930740"></a-asset-item>
     
+    
+    <a-asset-item id="sofa"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbend.gltf?1522831454223"></a-asset-item>
+    
+        <a-asset-item id="bar"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fspacebar.gltf?1522926501251"></a-asset-item>
+    
+            <a-asset-item id="beerpong"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbeerpong.gltf?1522909346220"></a-asset-item>
+    
+                <a-asset-item id="pool"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fpool.gltf?1522939474936"></a-asset-item>
+    
+                    <a-asset-item id="speaker"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fspeaker.gltf?1522942144930"></a-asset-item>
+    
+                        <a-asset-item id="lift"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Flift2.gltf?1522943603115"></a-asset-item>
+    
+
+    
+  
+    
+    <!-- (gltf) furniture assets 
+
+  <a-asset-item id="dj"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fdj.gltf?1522927079527"></a-asset-item>
+    
+        <a-asset-item id="stage"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fstage.gltf?1522927423609"></a-asset-item>
+
+       <a-asset-item id="kitchen"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fkitchen.gltf?1522906880784"></a-asset-item> -->
+    
+  
     
     <!--   people       -->
    <a-asset-item id="man-running"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FMan_Pose017.gltf?1521025645899"></a-asset-item>
-    <!---<a-asset-item id="people-sitting-group" 
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-06.gltf?1521031190191"></a-asset-item>
-    <a-asset-item id="people-group" 
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F53ab794c9cfbb.gltf?1521029373502"></a-asset-item> --->
+    <!-- <a-asset-item id="people-sitting-group" 
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-06.gltf?1521031190191"></a-asset-item> -->
+    <!-- <a-asset-item id="people-group" 
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F53ab794c9cfbb.gltf?1521029373502"></a-asset-item> -->
     <a-asset-item id="man-with-bag"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FMan_walking_N120814.gltf?1521030349166"></a-asset-item>
     <a-asset-item id="man-standing"
@@ -74,29 +92,38 @@
     <a-asset-item id="man-sitting"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ffile.gltf?1521032098789"></a-asset-item>
     
-    <!---<a-asset-item id="people-group-wandering"
-                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-02.gltf?1521032987421"></a-asset-item> --->
+    <a-asset-item id="people-group-wandering"
+                  src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FGroup-02.gltf?1521032987421"></a-asset-item> 
 
     <a-asset-item id="texture-wood"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F1-fine-wood-seamless.jpg?1521025660092"></a-asset-item>
     <img id="skyTexture"
-         src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F156689-download-white-gradient-background-2447x1468-1080p.jpg?1522218669630">
+         src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fwallpaper.wiki-Abstract-shape-wallpaper-polish-illusions-PIC-WPB009607.jpg?1522937773559"/>
     
     <!-- icon images -->
-    <img id="teacherIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbookshelf%20wrap%20remake.png?1521708247203">
-    <img id="vetIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fdog%20wrap%20remake.png?1521712448160">
-    <img id="musicianIcon" src ="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmusician%20wrap%20remake.png?1521712448615">
-    <img id="computingIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fstudent%20wrap%20remake.png?1521712448392">
-    <img id="questionMarkIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fquestionmarks.jpg?1522218201390">
+    <img id="teacherIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbookshelf%20wrap%20remake.png?1521708247203"/>
+    <img id="vetIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fdog%20wrap%20remake.png?1521712448160"/>
+    <img id="musicianIcon" src ="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmusician%20wrap%20remake.png?1521712448615"/>
+    <img id="computingIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fstudent%20wrap%20remake.png?1521712448392"/>
+    <img id="questionMarkIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fquestionmarks.jpg?1522218201390"/>
+    <img id="vetUnlockableIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fdog%20wrap%20remake.png?1521712448160"/>
+    <img id="musicianUnlockableIcon" src ="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fmusician%20wrap%20remake.png?1521712448615"/>
+    <img id="teacherUnlockableIcon" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbookshelf%20wrap%20remake.png?1521708247203"/>
+    
+    <!-- icon bar (UI) images -->
+    <img id="computingIconUI" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ficon-computer.png?1522828339758"/>
+    <img id="vetIconUI" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ficon-dog.png?1522828339932"/>
+    <img id="teacherIconUI" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ficon-book.png?1522828340056"/>
+    <img id="musicianIconUI" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ficon-musician.png?1522828340198"/>
     
     <!-- sounds -->
     <audio id ="someSound" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FCrowd_Talking.mp3?1522221667543" preload="auto"></audio>
+    <audio id ="jazz" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbensound-thelounge.mp3?1523024576164" preload="auto" volume="1"></audio>
     
     <script id="bubble-asset" type="text/html"> 
-      <a-entity>
-          <a-sphere color="#CCC" radius="0.1" position="0 0.1 0" ></a-sphere>
-          <a-sphere color="#CCC" radius="0.17" position="0 0.5 0" ></a-sphere>
-          <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.5" position="0 1.3 0" animation__rotate="property: rotation; dur: 4000;easing: linear; loop: true; to: 0 360 0"></a-sphere>
+      <a-entity rotation="0 50 0">
+        <a-cone color="#CCC" radius-bottom="0.04" radius-top="0.01" height="0.2" position="-0.1 0 0" rotation="0 0 70"></a-cone>
+        <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.1" position="0 0 0"></a-sphere>
       </a-entity>
     </script>
     <a-asset-item id="speech"
@@ -105,28 +132,42 @@
   </a-assets>
 
 
-  <a-sky id="background" src="#skyTexture" theta-length="90" radius="30"></a-sky>
-  <a-cylinder id="ground" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Ffloor.png?1521031899942"
-              radius="32" height="0.1"></a-cylinder>
+  <a-sky id="background" src="#skyTexture" theta-length="90" radius="10"></a-sky>
+  <a-cylinder id="ground" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2F800px_COLOURBOX2724843.jpg?1522944388802"
+              radius="10" height="0.1"></a-cylinder>
   <a-plane color="#CCC" height="100" width="100" rotation="-90 0 0"></a-plane>
   <a-entity position="0 2.2 4">
-    <a-entity camera look-controls wasd-controls universal-controls id="playerCamera">
-      <!-- cursor-->
-      <a-entity position="0 0 -0.1"
-                geometry="primitive: ring; radiusOuter: 0.0022;
-                          radiusInner: 0.0015;"
-                material="color: cyan; shader: flat"
-                cursor="maxDistance: 30; fuse: true; fuseTimeout: 3000">
+    <a-entity position="0 -0.4 0">
+      <a-entity id="rig"
+            movement-controls>
+        <a-entity camera look-controls wasd-controls universal-controls id="playerCamera">
+          <!-- cursor-->
+          <a-entity position="0 0 -0.1"
+                    geometry="primitive: ring; radiusOuter: 0.0022;
+                              radiusInner: 0.0015;"
+                    material="color: cyan; shader: flat"
+                    cursor="maxDistance: 30; fuse: true; fuseTimeout: 3000">
+          </a-entity>
+               <!-- Score isn't showing up! 
+                  <a-text id="score" value="Score:0" position="0 0 0" height="20" color="#000" scale="1 1 1"></a-text> -->
+
+          <a-sound id = "talkSound" src="url(https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FCrowd_Talking.mp3?1522221667543)" autoplay="true"
+                     position="0 0 0" loop="true" volume="0.5"></a-sound>
+          <a-sound id = "jazz1" src="url(https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbensound-thelounge.mp3?1523024576164)" autoplay="true"
+                     position="0 0 0" loop="true" volume="0.4"></a-sound>
+          <a-text id="score" value="Score:0" position="-3.7 2.2 -3" color="#FFF" scale="1 1 1"></a-text>
+          <a-entity id="icons-display" position="1.5 1.5 -2">
+            <a-plane  color="#CCC" height="0.3" width="0.3"  position="0 0 0" src="#computingIconUI"></a-plane>
+          </a-entity>
+        </a-entity>
       </a-entity>
-      
-      <a-sound id = "talkSound" src="url(https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FCrowd_Talking.mp3?1522221667543)" autoplay="true"
-                 position="0 0 0" loop="true" volume="0.5"></a-sound>
-      
     </a-entity>
+    
+    
   <a-entity id="speechBubbltTest" position="0 2 0"></a-entity>
   <a-entity id="introScene" position = "0 -0.2 -4"> 
     <a-entity sound="src: #someSound"></a-entity>
-    <a-text value="Welcome to SOCA" position="-2.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
+    <a-text value="Welcome to Whuffies Bar" position="-4 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
     <a-text id="tutorialButton" value="Tutorial" position="-4.2 2 -4" tab-size="5"
             height="20" color="#000" scale="3 3 3">
       <!-- primitive rectangle acting as button -->
@@ -142,18 +183,34 @@
   
   <a-entity id="tutorialScene" position = "0 -2 -4" visible = "false"> 
     
-    <a-text id="onScreenInstructions" value="Hover over the speech bubble on the man's head" position="-6.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
-    <a-entity position="0 0 -4.5">
-    <a-entity gltf-model="#man-sitting" scale="0.018 0.018 0.018" rotation="0 0 0"></a-entity>
-    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#questionMarkIcon" position = "0 2 0"></a-entity>
+  <a-text id="Instructions1" value="Instructions: \n 1. Tap to move \n 2. Hold gaze over speech bubble to talk " position="-5 4 -4" tab-size="10" height="20" color="#000" scale="2 2 2"></a-text>
+     <a-box id="Instructions1box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
     
-      </a-entity>
-    <a-text id="skipTut" value="Skip Tutorial" position="-2.2 2 -4" tab-size="5"
-            height="20" color="#000" scale="3 3 3" visible = "false">
-      <!-- primitive rectangle acting as button -->
-      <a-box color ="orange" position="0.43 0 -0.01" onclick="tutToGameScene()"  depth="0.01" height="0.7" width="1.8" ></a-box>
+    <a-text id="Instructions2" value="Start Game!" position="4.2 4 -4" tab-size="10" height="20" color="#FFF" scale="2 2 2"></a-text>
+    <a-box id="Instructions2box" color ="green" position="5.5 4 -4.1" onclick="introToGameScene()"  depth="0.01" height="2" width="2.5" ></a-box> 
+    
+    
+  <!--  <a-text id="onScreenInstructions" value="Hover over the speech bubble on the man's head" position="-6.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text> -->
+    
+    <a-entity position="0 0 -4.5">
       
-    </a-text>
+      <a-entity id="groupInTut" gltf-model="#people-group-wandering" scale="0.06 0.06 0.06" rotation="0 90 0" 
+                position="0 0 0"></a-entity> 
+    
+    <a-entity id="tutMan" gltf-model="#man-sitting" scale="0.023 0.023 0.023" rotation="0 -225 0" position="3.3 0 -1"></a-entity>
+      
+    <!-- <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#questionMarkIcon" position = "0.1 1.5 -0.3" rotation="0 30 0"></a-entity> -->
+    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position = "3.2 1.9 -0.8" rotation="0 180 0"></a-entity>
+       
+      </a-entity>
+    <!-- Commented out on 6/4 
+      
+        <a-text id="skipTut" value="Skip Tutorial" position="-2.2 2 -4" tab-size="5"
+            height="20" color="#000" scale="3 3 3" visible = "false"> -->
+      <!-- primitive rectangle acting as button -->
+     <!-- <a-box color ="orange" position="0.43 0 -0.01" onclick="tutToGameScene()"  depth="0.01" height="0.7" width="1.8" ></a-box>
+      
+    </a-text> /Commented out on 6/4 -->
     
   </a-entity> 
 
@@ -175,60 +232,76 @@
 
     <!-- repositioning of entities due to camera -->
     <a-entity position="0 -2 -4" id = "mainGameScene" visible = "false">
-      <a-text id="score" value="Score:0" position="0 0.1 -3" rotation="-90 0 0"　tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
+    
+
+      <!-- a-text id="score" value="Score:0" position="0 0.1 -3" rotation="-90 0 0"　tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text> -->
       <a-sound src="src: #someSound" autoplay="true" loop="true" position="0 2 5"></a-sound>
  
       <!--    MODELS that are being used for (28/3/18) -->
   <!-- for sound <a-sound src="src: https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FCrowd_Talking.mp3?1522221667543" autoplay="true" position="0 2 5"></a-sound> -->
             
-          
-      <!-- Group 2 -->       <a-entity id="posHuman1" gltf-model="#man-standing" scale="0.018 0.018 0.018" rotation="0 150 0" position="-14 0 -5" onclick="tpToHuman2(this.id)"></a-entity>
-                              <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="-14 1.8 -5"></a-entity>
-      
-      <a-entity id="posHuman2" gltf-model="#man-standing" scale="0.018 0.018 0.018" rotation="0 -60 0" position="-15 0 -5" onclick="tpToHuman2(this.id)"></a-entity>
-      <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="-15 1.8 -5"></a-entity>
-                              
+      <a-entity position="-2.3 0 -3" rotation="0 220 0"><!-- man in front of nike bag guy-->
+      <!-- Group 2 -->       <a-entity id="posHuman1" gltf-model="#man-standing" scale="0.020 0.020 0.020"  position="0 0 0"></a-entity>
+                              <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="0.1 1.5 -0.3"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 -80 0" position="-2.2 0 -1.3"><!-- man in front of cup lady-->
+          <a-entity id="posHuman2" gltf-model="#man-standing" scale="0.020 0.020 0.020" ></a-entity>
+          <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="0.1 1.5 -0.3"></a-entity>
+      </a-entity>             
       
             <!-- Group3 -->
-       <a-entity id="posHuman3" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" rotation="0 180 0" position="-10 0 1" onclick="tpToHuman2(this.id)"></a-entity>
-       <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="-10 2.0 1"></a-entity>
-                              
+      <a-entity rotation="0 220 0" position="-1.5 0 1"><!-- man in front of maroon sblazer lady-->
+       <a-entity id="posHuman3" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
+       <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+      </a-entity>
       
-      <a-entity id="posHuman13" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" rotation="0 95 0" position="-9 0 1.5" onclick="tpToHuman2(this.id)"></a-entity>
-      <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="-9 2.0 1.5"></a-entity>                        
-      
-      <a-entity id="posHuman14" gltf-model="#man-standing" scale="0.020 0.020 0.020" rotation="0 -10 0" position="-10 0 2.2" onclick="tpToHuman2(this.id)"></a-entity>
-       <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="-10 2.0 2.2"></a-entity>  
-      
+      <a-entity rotation="0 -75 0" position="-3 0 0.5"> <!-- man in front of green blazer guy-->
+        <a-entity id="posHuman13" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
+        <a-entity id="bubble1a" template="src: #bubble-asset" data-src="#teacherUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>                        
+      </a-entity>
+      <a-entity rotation="0 270 0" position="0.7 0 2"><!-- man in front of two guys-->
+         <a-entity id="posHuman14" gltf-model="#man-standing" scale="0.020 0.022 0.020" ></a-entity>
+         <a-entity id="bubble1b" template="src: #bubble-asset" data-src="#teacherIcon" position="0.1 1.5 -0.5"></a-entity>  
+       </a-entity>
       <!-- Group4 of 1 musician and 3 vets-->
-                    <a-entity id="posHuman4" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 -30 0" position="14 0 1" onclick="tpToHuman2(this.id)"></a-entity> 
-                    <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "14 1.8 1"></a-entity>
-      
-                     <a-entity id="posHuman5" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 45 0" position="15 0 1" onclick="tpToHuman2(this.id)"></a-entity>
-                     <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="15 1.8 1"></a-entity>
-      
-                     <a-entity id="posHuman6" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 180 0" position="14 0 0" onclick="tpToHuman2(this.id)"></a-entity> 
-                    <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="14 1.8 0"></a-entity>
-      
-                     <a-entity id="posHuman7" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 130 0" position="15 0 0" onclick="tpToHuman2(this.id)"></a-entity> 
-                     <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="15 1.8 0"></a-entity>
-      
+      <a-entity rotation="0 170 0" position="0.8 0 0.3"> <!-- man talking to lady in pink -->
+                    <a-entity id="posHuman4" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
+                    <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>
+      </a-entity> 
+      <a-entity rotation="0 80 0" position="3.3 0 -2.5"> <!-- man talking to lady in white heels, on the phone -->
+                     <a-entity id="posHuman5" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity>
+                     <a-entity id="bubble2a" template="src: #bubble-asset" data-src="#vetUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+       <a-entity rotation="0 70 0" position="3.3 0 -0.5"> <!-- man talking to guy in black blazer, red tshirt -->
+                     <a-entity id="posHuman6" gltf-model="#man-with-bag" scale="0.02 0.02 0.02"></a-entity> 
+                    <a-entity id="bubble2b" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 120 0" position="0.5 0 -3.2"> <!-- man talking to lady in brown, near bar -->
+                     <a-entity id="posHuman7" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
+                     <a-entity id="bubble2c" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+      </a-entity>
       <!-- Group5 of 5 musicians -->
-                    <a-entity id="posHuman8" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 180 0" position="13 0 14" onclick="tpToHuman2(this.id)"></a-entity> 
-                    <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "13 1.8 14"></a-entity>
-                        
-                     <a-entity id="posHuman9" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 90 0" position="15 0 15" onclick="tpToHuman2(this.id)"></a-entity> 
-                    <!-- I know it says the id has to be unique but it still shows up in code--><a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "15 1.8 15"></a-entity>
-      
-                     <a-entity id="posHuman10" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 0 0" position="14 0 16" onclick="tpToHuman2(this.id)"></a-entity> 
-                     <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "14 1.8 16"></a-entity>
-      
-                     <a-entity id="posHuman11" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 145 0" position="14.5 0 14" onclick="tpToHuman2(this.id)"></a-entity>
-                     <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "14.5 1.8 14"></a-entity>
-      
-                     <a-entity id="posHuman12" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" rotation="0 270 0" position="13 0 16" onclick="tpToHuman2(this.id)"></a-entity>
-                     <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianIcon" position = "13 1.8 16"></a-entity>
-                       
+      <a-entity rotation="0 -140 0" position="0.5 0 -2"><!-- man talking to guy shaking hands -->
+                    <a-entity id="posHuman8" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
+                    <a-entity id="bubble3a" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 90 0" position="15 0 15">
+                     <a-entity id="posHuman9" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity> 
+                    <!-- I know it says the id has to be unique but it still shows up in code-->
+                    <a-entity id="bubble3b" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 0 0" position="14 0 16">
+                     <a-entity id="posHuman10" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity> 
+                     <a-entity id="bubble3c" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 145 0" position="14.5 0 14">
+                     <a-entity id="posHuman11" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity>
+                     <a-entity id="bubble3d" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+      </a-entity>
+      <a-entity rotation="0 270 0" position="13 0 16">
+                     <a-entity id="posHuman12" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity>
+                     <a-entity id="bubble3e" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+      </a-entity>  
               
       
       
@@ -248,7 +321,7 @@
       <!-- <a-entity gltf-model="#man-running" scale="6 6 6" rotation="-90 0 0" position="5 2 -5"></a-entity> -->
       
 
-      <!--  A group of sitting people -->
+      <!--A group of sitting people -->
       <!-- <a-entity gltf-model="#people-sitting-group" scale="0.08 0.08 0.08" rotation="0 0 0"
                 position="10 0 -5"></a-entity> -->
       <!--  A group of people      -->
@@ -264,32 +337,81 @@
 
       
       
-      <!--  A group wandering around      -->
-      <!-- <a-entity gltf-model="#people-group-wandering" scale="0.05 0.05 0.05" rotation="0 90 0" 
-                position="20 0 -5"></a-entity> -->
-
-      <!-- furniture -->
-      <a-obj-model src="#fishtank-obj" mtl="#fishtank-mtl" scale="2 2 2" position="4 1.5 3">
-        <a-box position="0 -0.3 0" depth="0.6" height="0.5" width="0.8" color="#000" shadow></a-box>
-      </a-obj-model>
-      <a-obj-model src="#printer-obj" mtl="#printer-mtl" scale="0.9 0.9 0.9" position="4 1.5 5"></a-obj-model>
-      <a-obj-model src="#piano-obj" mtl="#piano-mtl" scale="0.6 0.6 0.6" position="8 1 -10"></a-obj-model>
+   <!-- A group wandering around
+      <a-entity gltf-model="#people-group-wandering" scale="0.05 0.05 0.05" rotation="0 90 0" 
+                position="-3 0 -5"></a-entity> -->
       
-      <!-- bar 
-      <a-obj-model src="barmaterials-mtl" mtl="#barmaterials-mtl" scale="0.9 0.9 0.9" position="4 1.5 10"></a-obj-model>
-      <a-obj-model src="barinterior-obj" mtl="#barinterior-mtl" scale="0.6 0.6 0.6" position="8 1 -5"></a-obj-model>-->
+      <a-entity id="group1" gltf-model="#people-group-wandering" scale="0.06 0.06 0.06" rotation="0 90 0" 
+                position="0 0 0"></a-entity>
+
+      
+            <a-entity id="sofa-left" gltf-model="#sofa" scale="1.5 1.5 1.5" rotation="-90 0 100" position="-7.5 0 4"></a-entity>
+            <a-entity id="sofa2" gltf-model="#sofa" scale="1.5 1.5 1.5" rotation="-90 0 -130" position="8 0 3"></a-entity>
+      
+       <a-entity src="bar1" gltf-model="#bar" scale="2.3 2.3 2.3" rotation ="0 -90 0" position="0 2 -7.5"></a-entity>
+      <a-text id="Name-of-bar" value="Whuffies" position="0 3.7 -5" height="20" color="#FFF" scale="3 3 3"></a-text>
+      
+      <a-entity src ="bp1" gltf-model="#beerpong" scale ="5.5 5.5 5.5" rotation="0 45 0" position="6 1 -1.5"></a-entity> 
+      <a-entity src ="pool1" gltf-model="#pool" scale ="0.8 0.8 0.8" rotation="0 -70 0" position="-5.5 0.8 -3.5"></a-entity> 
+      
+      <a-entity src ="speakerleft" gltf-model="#speaker" scale ="1 1 1" rotation="0 90 0" position="4 1 -5.5"></a-entity> 
+     <a-entity src ="speakerright" gltf-model="#speaker" scale ="1 1 1" rotation="0 90 0" position="5 1 -5"></a-entity>
+      
+          <!-- <a-entity src ="lift" gltf-model="#lift" scale ="0.8 0.8 0.8 " rotation="0 -90 0" position="-2 0 6"></a-entity> -->
+
+      
+      
+      <!-- furniture 
+ 
+      <a-entity id="bunsai-sofa1-left" io3d-furniture="id:8c4c4d48-dc51-4371-876a-09d51f10b66b" shadow="cast: true" position="-16 0 6"></a-entity>
+
+      <a-entity src="dj1" gltf-model="#dj" scale="2 2 2" rotation ="0 0 0" position="0 1 7"></a-entity>
+      <a-entity src="stage1" gltf-model="#stage" scale="0.16 0.16 0.16" rotation ="0 -120 0" position="4 0 3"></a-entity> -->
+      
+      
+      <!--- 
+      
+      <a-entity id="officeTable1" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 0" position="10 0 5"></a-entity> 
+      
+      <a-entity id="officeTable2" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 0" position="13 0 5"></a-entity> 
+      
+      <a-entity id="officeTable3" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 0" position="16 0 5"></a-entity> 
+      
+      <a-entity id="officeTable4" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 0" position="19 0 5"></a-entity> 
+      
+      <a-entity id="officeTable5" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 0" position="21 0 5"></a-entity> 
+      
+    
+      
+      
+      
+      <a-entity id="officeTable7" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 180" position="13 0 -2"></a-entity> 
+      
+      <a-entity id="officeTable8" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 180" position="16 0 -2"></a-entity> 
+      
+      <a-entity id="officeTable9" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 180" position="19 0 -2"></a-entity> 
+      
+      <a-entity id="officeTable10" gltf-model="#officeTable" scale="1 1 1" rotation="-90 0 180" position="21 0 -2"></a-entity>  -->
+      
+      
+ 
       
 
-      <!-- default items
-      <a-torus-knot position ="-2 0 -3" rotation="0 0 0" color="blue" shadow></a-torus-knot>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
-      -->
 
-      <!-- table -->
+      
+<!-- kitchen 
+    <a-entity src ="kitchen2" gltf-model="#kitchen" scale ="0.03 0.03 0.03" rotation="0 0 0" position="-7 0 -9"></a-entity>
+      <a-entity src ="kitchen2" gltf-model="#k6hen" scale ="0.03 0.03 0.03" rotation="0 0 0" position="-11 0 -9"></a-entity> -->
+      
+
+      
+
+      <!-- table 
       <a-entity id="furniture" io3d-furniture="id:aa128614-2dd7-409a-809c-bf911ace24ff" scale="5 5 5" position="7 0 5.4"></a-entity>
-      <a-entity id="bunsai" io3d-furniture="id:8c4c4d48-dc51-4371-876a-09d51f10b66b" shadow="cast: true" position="0 0 0"></a-entity>
+      
+      <a-entity id="bunsai" io3d-furniture="id:8c4c4d48-dc51-4371-876a-09d51f10b66b" shadow="cast: true" position="0 0 0"></a-entity>  -->
+      
+      <!-- what is this, a table?
       <a-box position="-1 1.2 5" color="#a86e3c" depth="5" height="0.5" width="2.7" scale="0.4 0.4 0.4">
         <a-box position="-1 -1.5 2.2" color="#87572d" depth="0.3" height="3" width="0.3">
         </a-box>
@@ -299,80 +421,96 @@
         </a-box>
         <a-box position="1.1 -1.5 -2.2" color="#87572d" depth="0.3" height="3" width="0.3">
         </a-box>
-      </a-box>
+      </a-box> --> 
 
     </a-entity>
-  </a-entity>
     <script>
-
+    var myIcons=[];
+        myIcons.push("#computingIcon", "#vetUnlockableIcon", "#teacherUnlockableIcon","#musicianUnlockableIcon");
+      
         var count=0;
         var y=1.3;
         var radius=0.5;
         var i;
+        var iconsDisplayX=0;
       // Component to change to a sequential color on click.
       AFRAME.registerComponent('cursor-listener', {   
         init: function () {
           this.el.addEventListener('mouseenter', function (evt) {
             // this.setAttribute('style', 'transition','radius 3s linear');
             // this.setAttribute('color', 'green');
-            this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 15;to:#0F0');
-            this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 1.3');       
-            this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0 2 0');
-            console.log('I was mouse enter at: ', evt.detail.intersection.point);
+            var currentIcon=this.getAttribute('src');
+            if(myIcons.includes(currentIcon)){
+            
+              this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 15;to:#0F0');
+              this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
+              // this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0 2 0');
+              // console.log('I was mouse enter at: ', evt.detail.intersection.point);
+            }else{
+              this.setAttribute('animation__color', 'property: material.color;dur: 1000;loop: 15;to:#F00');
+              this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
+           
+            }
+            
           });
           this.el.addEventListener('mouseleave', function (evt) {
             this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 1;to:#FFF');
-            // this.removeAttribute('animation__color');
-            // this.setAttribute('color','white');
-            this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0.5');
-            this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0 1.3 0');      
-            // this.setAttribute('radius', '0.5');
-            // this.setAttribute('position','0 1.3 0');
-            console.log('I was mouse leave at: ', evt.detail.intersection.point);
+            this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0.1');
+            // console.log('I was mouse leave at: ', evt.detail.intersection.point);
           });
           this.el.addEventListener('click', function (evt) {
-            this.closest("a-entity").setAttribute('visible', 'false')
-            // y=1.3;
-            // radius=0.5;
-            console.log('I was clicked at: ', evt.detail.intersection.point);
-            count++;
-            document.getElementById('score').setAttribute('value', 'score: '+count);
-            console.log(count);
+            var currentIcon=this.getAttribute('src');
+            if(myIcons.includes(currentIcon)){
+              this.closest("a-entity").setAttribute('visible', 'false');
+              console.log('I was clicked at: ', evt.detail.intersection.point);
+              count++;
+              document.getElementById('score').setAttribute('value', 'score: '+count);
+              if(currentIcon.includes("Unlockable")){
+                 //for unlockable icons, replace unlocable string to actual src string
+                myIcons[myIcons.indexOf(currentIcon)]=currentIcon.replace(/Unlockable/g, "");
+                
+                // Create a plane for new icon
+                iconsDisplayX += 0.33;
+                // var position =iconsDisplayX+" 0 0";
+                var src=currentIcon.replace(/Unlockable/g, "")+"UI";
+                // console.log(position);
+                console.log(src);
+                var el = document.createElement('a-plane');
+                // console.log(el);
+                el.setAttribute('color','#CCC');
+                el.setAttribute('height','0.3');
+                el.setAttribute('width','0.3');
+                el.setAttribute('position',{x:iconsDisplayX,y:0,z:0});
+                el.setAttribute('src',src);
+                // console.log(el);
+                document.getElementById("icons-display").appendChild(el); 
+              }
+              // console.log(myIcons);
+             
+              
+              
+            }
+            
+
           });
         }
       });
       
-      /*
-      AFRAME.registerComponent('teleport-listener', {
-        update: function() {
-          this.el.addEventListener('click', function (evt) {
-            tpToHuman1(this.getAttribute('position'));
-          });
-        }
-      });*/
-      
-      //hardcoded teleportation DO NOT USE
-  function tpToHuman1(pos) {
-    console.log("teleporting");
-    //var pos = document.getElementById('posHuman1').getAttribute('position');
-    console.log("position gotten: " + pos.x + " " + pos.z);
-    document.getElementById('playerCamera'). setAttribute('position', pos);
-  }
-  
-      //working one
-  function tpToHuman2(id) {
-     console.log("teleporting 2...");
-    var pos = document.getElementById(id).getAttribute('position');
-    document.getElementById('playerCamera'). setAttribute('position', {x: pos.x, y: pos.y-0.2, z: pos.z - 3});
-  }
-      
     </script>
+  </a-entity>
 </a-scene>
   <script type="text/javascript">
 
   function introToGameScene() {
     document.getElementById('introScene').setAttribute('visible', 'false')
     document.getElementById('mainGameScene').setAttribute('visible', 'true')
+    document.getElementById('Instructions1').setAttribute('visible', 'false')
+    document.getElementById('Instructions2').setAttribute('visible', 'false')
+    document.getElementById('Instructions1box').setAttribute('visible', 'false')
+    document.getElementById('Instructions2box').setAttribute('visible', 'false')
+    document.getElementById('tutBubble').setAttribute('visible', 'false')
+    document.getElementById('tutMan').setAttribute('visible', 'false')
+    document.getElementById('groupInTut').setAttribute('visible', 'false')
   }
     
   function introToTutScene() {
@@ -380,10 +518,6 @@
     document.getElementById('tutorialScene').setAttribute('visible', 'true')
   }
     
-  function tutToGameScene() {
-    document.getElementById('tutorialScene').setAttribute('visible', 'false')
-    document.getElementById('mainGameScene').setAttribute('visible', 'true')
-  }
    
   </script>
 </body>
