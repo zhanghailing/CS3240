@@ -121,7 +121,7 @@
     <audio id ="jazz" src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbensound-thelounge.mp3?1523024576164" preload="auto" volume="1"></audio>
     
     <script id="bubble-asset" type="text/html"> 
-      <a-entity rotation="0 50 0">
+      <a-entity rotation="0 -20 0">
         <a-cone color="#CCC" radius-bottom="0.04" radius-top="0.01" height="0.2" position="-0.1 0 0" rotation="0 0 70"></a-cone>
         <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.1" position="0 0 0"></a-sphere>
       </a-entity>
@@ -159,6 +159,20 @@
           <a-entity id="icons-display" position="1.5 1.5 -2">
             <a-plane  color="#CCC" height="0.3" width="0.3"  position="0 0 0" src="#computingIconUI"></a-plane>
           </a-entity>
+          <a-entity id="proceedingToGame3" position = "0 0 -2" visible = "false"> 
+            <a-text id="Instructions3" value="Timer starts now, collect as many social capital as possible within 60s!" position="-2.5 0 0" tab-size="10" height="2" width="5" color="#000" scale="0.7 0.7 0.7">
+            <a-box id="Instructions3box" color ="orange" position="2.5 0 -0.1" depth="0.01" height="2" width="6" ></a-box>
+            <a-text id="InstructionsCountdown" color ="orange" position="6.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text> 
+            </a-text>
+            </a-entity> 
+          <a-entity id="showingScore" position = "0 0 -2" visible = "false"> 
+            <a-text id="scoreText" value="Your score is: " position="-1.5 0 0" tab-size="10" height="2" width="4" color="#000" scale="0.7 0.7 0.7">
+            <a-box id="scorebox" color ="orange" position="1.5 0 -0.1" depth="0.01" height="2" width="4" ></a-box>
+              <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text> 
+            </a-text>
+           
+            
+            </a-entity> 
         </a-entity>
       </a-entity>
     </a-entity>
@@ -168,17 +182,13 @@
   <a-entity id="introScene" position = "0 -0.2 -4"> 
     <a-entity sound="src: #someSound"></a-entity>
     <a-text value="Welcome to Whuffies Bar" position="-4 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
-    <a-text id="tutorialButton" value="Tutorial" position="-4.2 2 -4" tab-size="5"
+    <a-text id="tutorialButton" value="Start game" position="-2 2 -4" tab-size="5"
             height="20" color="#000" scale="3 3 3">
       <!-- primitive rectangle acting as button -->
-      <a-box color ="orange" position="0.43 0 -0.01" onclick="introToTutScene()"  depth="0.01" height="0.7" width="1.2" ></a-box>
+      <a-box color ="orange" position="0.54 0 -0.01" onclick="introToTutScene()"  depth="0.01" height="0.7" width="1.2" ></a-box>
       
     </a-text>
-    <a-text id="startButton" value="Start game" position="0.8 2 -4" tab-size="5"
-            height="20" color="#000" scale="3 3 3">
-      <!-- primitive rectangle acting as button -->
-      <a-box color ="orange" position="0.58 0 -0.01" onclick="introToGameScene()"  depth="0.01" height="0.7" width="1.2" ></a-box>
-    </a-text>
+    
   </a-entity> 
   
   <a-entity id="tutorialScene" position = "0 -2 -4" visible = "false"> 
@@ -196,12 +206,11 @@
       
       <a-entity id="groupInTut" gltf-model="#people-group-wandering" scale="0.06 0.06 0.06" rotation="0 90 0" 
                 position="0 0 0"></a-entity> 
-    
-    <a-entity id="tutMan" gltf-model="#man-sitting" scale="0.023 0.023 0.023" rotation="0 -225 0" position="3.3 0 -1"></a-entity>
-      
+  <a-entity rotation="0 -225 0" position="3.3 0 -1">
+    <a-entity id="tutMan" gltf-model="#man-sitting" scale="0.023 0.023 0.023" ></a-entity>
     <!-- <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#questionMarkIcon" position = "0.1 1.5 -0.3" rotation="0 30 0"></a-entity> -->
-    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position = "3.2 1.9 -0.8" rotation="0 180 0"></a-entity>
-       
+    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1" onclick="proceedingToGame()"></a-entity>
+      </a-entity>
       </a-entity>
     <!-- Commented out on 6/4 
       
@@ -213,6 +222,7 @@
     </a-text> /Commented out on 6/4 -->
     
   </a-entity> 
+    
 
   <!-- cursor -->
   <!--        <a-entity position="0 2.2 4">
@@ -231,9 +241,10 @@
     </a-entity> -->
 
     <!-- repositioning of entities due to camera -->
-    <a-entity position="0 -2 -4" id = "mainGameScene" visible = "false">
-    
 
+    <a-entity position="0 -2 -4" id = "mainGameScene" visible = "false">
+
+    
       <!-- a-text id="score" value="Score:0" position="0 0.1 -3" rotation="-90 0 0"　tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text> -->
       <a-sound src="src: #someSound" autoplay="true" loop="true" position="0 2 5"></a-sound>
  
@@ -242,65 +253,65 @@
             
       <a-entity position="-2.3 0 -3" rotation="0 220 0"><!-- man in front of nike bag guy-->
       <!-- Group 2 -->       <a-entity id="posHuman1" gltf-model="#man-standing" scale="0.020 0.020 0.020"  position="0 0 0"></a-entity>
-                              <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="0.1 1.5 -0.3"></a-entity>
+                              <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 -80 0" position="-2.2 0 -1.3"><!-- man in front of cup lady-->
           <a-entity id="posHuman2" gltf-model="#man-standing" scale="0.020 0.020 0.020" ></a-entity>
-          <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="0.1 1.5 -0.3"></a-entity>
+          <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>             
       
             <!-- Group3 -->
       <a-entity rotation="0 220 0" position="-1.5 0 1"><!-- man in front of maroon sblazer lady-->
        <a-entity id="posHuman3" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
-       <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+       <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       
       <a-entity rotation="0 -75 0" position="-3 0 0.5"> <!-- man in front of green blazer guy-->
         <a-entity id="posHuman13" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
-        <a-entity id="bubble1a" template="src: #bubble-asset" data-src="#teacherUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>                        
+        <a-entity id="bubble1a" template="src: #bubble-asset" data-src="#teacherUnlockableIcon" position="0.32 1.9 -0.1"></a-entity>                        
       </a-entity>
       <a-entity rotation="0 270 0" position="0.7 0 2"><!-- man in front of two guys-->
          <a-entity id="posHuman14" gltf-model="#man-standing" scale="0.020 0.022 0.020" ></a-entity>
-         <a-entity id="bubble1b" template="src: #bubble-asset" data-src="#teacherIcon" position="0.1 1.5 -0.5"></a-entity>  
+         <a-entity id="bubble1b" template="src: #bubble-asset" data-src="#teacherIcon" position="0.32 1.9 -0.1"></a-entity>  
        </a-entity>
       <!-- Group4 of 1 musician and 3 vets-->
       <a-entity rotation="0 170 0" position="0.8 0 0.3"> <!-- man talking to lady in pink -->
                     <a-entity id="posHuman4" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
-                    <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>
+                    <a-entity id="bubble3" template="src: #bubble-asset" data-src="#musicianUnlockableIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity> 
       <a-entity rotation="0 80 0" position="3.3 0 -2.5"> <!-- man talking to lady in white heels, on the phone -->
                      <a-entity id="posHuman5" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity>
-                     <a-entity id="bubble2a" template="src: #bubble-asset" data-src="#vetUnlockableIcon" position="0.1 1.5 -0.5"></a-entity>
+                     <a-entity id="bubble2a" template="src: #bubble-asset" data-src="#vetUnlockableIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
        <a-entity rotation="0 70 0" position="3.3 0 -0.5"> <!-- man talking to guy in black blazer, red tshirt -->
                      <a-entity id="posHuman6" gltf-model="#man-with-bag" scale="0.02 0.02 0.02"></a-entity> 
-                    <a-entity id="bubble2b" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+                    <a-entity id="bubble2b" template="src: #bubble-asset" data-src="#vetIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 120 0" position="0.5 0 -3.2"> <!-- man talking to lady in brown, near bar -->
                      <a-entity id="posHuman7" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
-                     <a-entity id="bubble2c" template="src: #bubble-asset" data-src="#vetIcon" position="0.1 1.5 -0.5"></a-entity>
+                     <a-entity id="bubble2c" template="src: #bubble-asset" data-src="#vetIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <!-- Group5 of 5 musicians -->
       <a-entity rotation="0 -140 0" position="0.5 0 -2"><!-- man talking to guy shaking hands -->
                     <a-entity id="posHuman8" gltf-model="#man-with-bag" scale="0.02 0.02 0.02" ></a-entity> 
-                    <a-entity id="bubble3a" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+                    <a-entity id="bubble3a" template="src: #bubble-asset" data-src="#musicianIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 90 0" position="15 0 15">
                      <a-entity id="posHuman9" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity> 
                     <!-- I know it says the id has to be unique but it still shows up in code-->
-                    <a-entity id="bubble3b" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+                    <a-entity id="bubble3b" template="src: #bubble-asset" data-src="#musicianIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 0 0" position="14 0 16">
                      <a-entity id="posHuman10" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity> 
-                     <a-entity id="bubble3c" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+                     <a-entity id="bubble3c" template="src: #bubble-asset" data-src="#musicianIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 145 0" position="14.5 0 14">
                      <a-entity id="posHuman11" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity>
-                     <a-entity id="bubble3d" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+                     <a-entity id="bubble3d" template="src: #bubble-asset" data-src="#musicianIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 270 0" position="13 0 16">
                      <a-entity id="posHuman12" gltf-model="#man-with-bag" scale="0.018 0.018 0.018" ></a-entity>
-                     <a-entity id="bubble3e" template="src: #bubble-asset" data-src="#musicianIcon" position = "0.1 1.5 -0.5"></a-entity>
+                     <a-entity id="bubble3e" template="src: #bubble-asset" data-src="#musicianIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>  
               
       
@@ -433,6 +444,9 @@
         var radius=0.5;
         var i;
         var iconsDisplayX=0;
+        var mainGame=document.getElementById('mainGameScene')
+        var parent=mainGame.parentNode
+        var iconBoard=document.getElementById('icons-display')
       // Component to change to a sequential color on click.
       AFRAME.registerComponent('cursor-listener', {   
         init: function () {
@@ -482,6 +496,7 @@
                 el.setAttribute('width','0.3');
                 el.setAttribute('position',{x:iconsDisplayX,y:0,z:0});
                 el.setAttribute('src',src);
+                el.setAttribute('id',src.replace(/#/g,"ID"));
                 // console.log(el);
                 document.getElementById("icons-display").appendChild(el); 
               }
@@ -495,15 +510,85 @@
           });
         }
       });
+      var timesOfPlay=0;
+    function showScore(){
+        document.getElementById('introScene').setAttribute('visible', 'false')
+        document.getElementById('mainGameScene').setAttribute('visible', 'false')
+        document.getElementById('Instructions1').setAttribute('visible', 'false')
+        document.getElementById('Instructions2').setAttribute('visible', 'false')
+        document.getElementById('Instructions1box').setAttribute('visible', 'false')
+        document.getElementById('Instructions2box').setAttribute('visible', 'false')
+        document.getElementById('tutBubble').setAttribute('visible', 'false')
+        document.getElementById('tutMan').setAttribute('visible', 'false')
+        document.getElementById('groupInTut').setAttribute('visible', 'false')
+        document.getElementById('showingScore').setAttribute('visible', 'true')
+        //           reloading game
+        document.getElementById('scoreText').setAttribute('value','Your Score is: '+count+'. Starting again in 5s.')
+        
+         var elem = document.getElementById("mainGameScene");
+         elem.parentNode.removeChild(elem);
+         parent.appendChild(mainGame);
       
-    </script>
-  </a-entity>
-</a-scene>
-  <script type="text/javascript">
+         var i;
+          for (i = 1; i < myIcons.length; i++) { 
+              var currentIcon=myIcons[i];
+              if (!currentIcon.includes("Unlockable")){
+                
+                  var iconName=currentIcon.replace(/#/g,"ID")+"UI"
+                  var iconDisplayed=document.getElementById(iconName)
+                  console.log(iconName);
+                  console.log(document.getElementById("icons-display"));
+                  console.log(iconDisplayed)
+                  document.getElementById("icons-display").removeChild(iconDisplayed)
+              }
+          
+          }
+        myIcons=[];
+         myIcons.push("#computingIcon", "#vetUnlockableIcon", "#teacherUnlockableIcon","#musicianUnlockableIcon");
+         iconsDisplayX=0;
+         
+         // var elem2 = document.getElementById('icons-display')
+         // elem2.parentNode.removeChild(elem2);
 
-  function introToGameScene() {
+        if(timesOfPlay===0){
+        setInterval(function(){
+          var valueScoreCountdown=document.getElementById('scoreCountdown').getAttribute('value')
+          if(valueScoreCountdown>0){
+           document.getElementById('scoreCountdown').setAttribute('value', valueScoreCountdown-1)
+          }
+        }, 1000)
+        } 
+        setTimeout(function(){
+          timesOfPlay++;
+          introToGameScene()
+        },5000)
+  }
+      
+
+        function introToGameScene() {
+          count=0;
+          document.getElementById('score').setAttribute('value', 'score: '+count);
+          document.getElementById('introScene').setAttribute('visible', 'false')
+          document.getElementById('mainGameScene').setAttribute('visible', 'true')
+          document.getElementById('Instructions1').setAttribute('visible', 'false')
+          document.getElementById('Instructions2').setAttribute('visible', 'false')
+          document.getElementById('Instructions1box').setAttribute('visible', 'false')
+          document.getElementById('Instructions2box').setAttribute('visible', 'false')
+          document.getElementById('tutBubble').setAttribute('visible', 'false')
+          document.getElementById('tutMan').setAttribute('visible', 'false')
+          document.getElementById('groupInTut').setAttribute('visible', 'false')
+          document.getElementById('proceedingToGame3').setAttribute('visible', 'false')
+          document.getElementById('showingScore').setAttribute('visible', 'false')
+          setTimeout(function(){
+            document.getElementById('scoreCountdown').setAttribute('value', 5)
+             showScore()
+            },30000)
+
+        }
+      
+        function proceedingToGame() {
     document.getElementById('introScene').setAttribute('visible', 'false')
-    document.getElementById('mainGameScene').setAttribute('visible', 'true')
+    // document.getElementById('mainGameScene').setAttribute('visible', 'true')
     document.getElementById('Instructions1').setAttribute('visible', 'false')
     document.getElementById('Instructions2').setAttribute('visible', 'false')
     document.getElementById('Instructions1box').setAttribute('visible', 'false')
@@ -511,14 +596,34 @@
     document.getElementById('tutBubble').setAttribute('visible', 'false')
     document.getElementById('tutMan').setAttribute('visible', 'false')
     document.getElementById('groupInTut').setAttribute('visible', 'false')
+    document.getElementById('showingScore').setAttribute('visible', 'false')
+    document.getElementById('proceedingToGame3').setAttribute('visible', 'true')
+    setInterval(function(){
+  
+      var instructCountDownValue=document.getElementById('InstructionsCountdown').getAttribute('value')
+      if(instructCountDownValue>0){
+     document.getElementById('InstructionsCountdown').setAttribute('value', instructCountDownValue-1)}}, 1000)
+    setTimeout(function(){
+    introToGameScene()
+    },5000)
+    
   }
+    </script>
+  </a-entity>
+</a-scene>
+  <script type="text/javascript">
+
+
     
   function introToTutScene() {
     document.getElementById('introScene').setAttribute('visible', 'false')
     document.getElementById('tutorialScene').setAttribute('visible', 'true')
+    document.getElementById('proceedingToGame3').setAttribute('visible', 'false')
+    document.getElementById('showingScore').setAttribute('visible', 'false')
   }
     
-   
+
+    
   </script>
 </body>
 </html>
