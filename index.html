@@ -287,12 +287,12 @@
 
     <!-- repositioning of entities due to camera -->
     <a-entity id="showingScore" position = "0 0 -1" visible = "false" look-at="[camera]">  
-            <a-text id="scoreText" align="center" value="Your score is: " position="-1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="0.7 0.7 0.7">
+            <a-text id="scoreText" align="center" value="Your score is: " position="-1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="1 1 1">
             <a-box id="scorebox" color ="orange" position="0 0 -0.1" depth="0.01" height="2" width="3" ></a-box>
 <!--               <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text>  -->
             </a-text>
-            <a-text id="scoreTextStart" onclick="befIntroToGameScene()" value="Restart" position="1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="0.7 0.7 0.7">
-            <a-box id="scoreboxStart" color ="green" position="0 0 -0.1" depth="0.01" height="2" width="2" ></a-box>
+            <a-text id="scoreTextStart" onclick="befIntroToGameScene()" value="Restart" position="1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="1 1 1">
+            <a-box id="scoreboxStart" color ="green" position="0.5 0 -0.1" depth="0.01" height="2" width="2" ></a-box>
 <!--               <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text>  -->
             </a-text>
             
@@ -767,7 +767,7 @@
             // document.getElementById('scoreCountdown').setAttribute('value', 5)
             
              showScore()
-            },6000)
+            },60000)
 
         }
       
