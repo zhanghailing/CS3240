@@ -10,8 +10,10 @@
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.0.0/dist/aframe-extras.min.js"></script>
    <script src="https://unpkg.com/aframe-animation-component@4.0.0/dist/aframe-animation-component.min.js"></script>
   <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+<!--   <script src="http://unpkg.com/aframe-arrow-component/index.js"></script> -->
 <!--   <script src="https://dist.3d.io/3dio-js/1.1.x/3dio.min.js"></script> -->
   <script src="https://3d.io/releases/3dio-js/1.x.x-beta/3dio.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.5.1/dist/aframe-look-at-component.min.js"></script>
   
   <style>
     .iconbar {
@@ -126,6 +128,16 @@
         <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.1" position="0 0 0"></a-sphere>
       </a-entity>
     </script>
+    <script id="arrow-asset" type="text/html">
+      <a-entity>
+          <a-entity arrow="direction: 0 0 -1;length: 0.5" position="3.1 0 0" rotation="0 -10 0"></a-entity>
+          <a-entity arrow="direction: 0 0 -1;length: 0.5" position="2.7 0 1.5" rotation="0 -15 0"></a-entity>
+          <a-entity arrow="direction: 0 0 -1;length: 0.5" position="2.0 0 3" rotation="0 -25 0"></a-entity>
+          <a-entity arrow="direction: 0 0 -1;length: 0.5" position="1.3 0 4" rotation="0 -40 0"></a-entity>
+          <a-entity arrow="direction: 0 0 -1;length: 0.5" position="0.5 0 5" rotation="0 -50 0"></a-entity>
+        </a-entity>
+    </script>
+
     <a-asset-item id="speech"
                   src="https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fspeech.gltf?1522828074401"></a-asset-item>
     
@@ -140,7 +152,7 @@
     <a-entity position="0 -0.4 0">
       <a-entity id="rig"
             movement-controls>
-        <a-entity camera look-controls wasd-controls universal-controls id="playerCamera">
+        <a-entity camera look-controls wasd-controls universal-controls instruction-listener id="playerCamera">
           <!-- cursor-->
           <a-entity position="0 0 -0.1"
                     geometry="primitive: ring; radiusOuter: 0.0022;
@@ -155,24 +167,20 @@
                      position="0 0 0" loop="true" volume="0.5"></a-sound>
           <a-sound id = "jazz1" src="url(https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2Fbensound-thelounge.mp3?1523024576164)" autoplay="true"
                      position="0 0 0" loop="true" volume="0.4"></a-sound>
-          <a-text id="score" value="Score:0" position="-3.7 2.2 -3" color="#FFF" scale="1 1 1"></a-text>
-          <a-entity id="icons-display" position="1.5 1.5 -2">
+           <a-text id="time" value="Time: 60" position="-2.2 1.0 -3" color="#FFF" scale="1 1 1" visible="false"></a-text>
+          <a-text id="score" value="Score:0" position="-1.2 1.0 -3" color="#FFF" scale="1 1 1" visible="false"></a-text>
+             <a-entity id="icons-display" position="0 0.7 -2" visible="false">
             <a-plane  color="#CCC" height="0.3" width="0.3"  position="0 0 0" src="#computingIconUI"></a-plane>
           </a-entity>
+<!--           <a-text id="Instructions1" instruction-listener visible="false" position="-3 0.5 -4" color="#FFF" wrap-count ="50" value="In this stage, you’ll learn about some basic moves used in the game.  \n To walk to another position: \n Move the cursor towards your desired direction and tap.  \n Try it out by moving towards the group of people in front of you! " align="left"  tab-size="10" height="20" scale="1 1 1"></a-text> -->
+     
           <a-entity id="proceedingToGame3" position = "0 0 -2" visible = "false"> 
             <a-text id="Instructions3" value="Timer starts now, collect as many social capital as possible within 60s!" position="-2.5 0 0" tab-size="10" height="2" width="5" color="#000" scale="0.7 0.7 0.7">
             <a-box id="Instructions3box" color ="orange" position="2.5 0 -0.1" depth="0.01" height="2" width="6" ></a-box>
             <a-text id="InstructionsCountdown" color ="orange" position="6.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text> 
             </a-text>
             </a-entity> 
-          <a-entity id="showingScore" position = "0 0 -2" visible = "false"> 
-            <a-text id="scoreText" value="Your score is: " position="-1.5 0 0" tab-size="10" height="2" width="4" color="#000" scale="0.7 0.7 0.7">
-            <a-box id="scorebox" color ="orange" position="1.5 0 -0.1" depth="0.01" height="2" width="4" ></a-box>
-              <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text> 
-            </a-text>
-           
-            
-            </a-entity> 
+          
         </a-entity>
       </a-entity>
     </a-entity>
@@ -181,8 +189,9 @@
   <a-entity id="speechBubbltTest" position="0 2 0"></a-entity>
   <a-entity id="introScene" position = "0 -0.2 -4"> 
     <a-entity sound="src: #someSound"></a-entity>
-    <a-text value="Welcome to Whuffies Bar" position="-4 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text>
-    <a-text id="tutorialButton" value="Start game" position="-2 2 -4" tab-size="5"
+    <a-text value="Welcome to Whuffies Bar" position="0 5 -4" align="center" tab-size="10" height="20" color="#FFF" scale="3.5 3.5 3.5"></a-text>
+    <a-text value="Gain as much Social Capital as \n    possible within 60 seconds!" align="center" position="0 4 -4" tab-size="10" height="20" width="5" color="#FFF" scale="2.5 2.5 2.5"></a-text>
+    <a-text id="tutorialButton" value="Start game" position="-1.7 2 -4" tab-size="5"
             height="20" color="#000" scale="3 3 3">
       <!-- primitive rectangle acting as button -->
       <a-box color ="orange" position="0.54 0 -0.01" onclick="introToTutScene()"  depth="0.01" height="0.7" width="1.2" ></a-box>
@@ -192,14 +201,20 @@
   </a-entity> 
   
   <a-entity id="tutorialScene" position = "0 -2 -4" visible = "false"> 
+  <a-entity id="instruction1" visible="false">
+  <a-text id="Instructions1" align="left" wrap-count ="60"  value="In this stage, you’ll learn about some basic moves used in the game.  \n To walk to another position: \n Move the cursor towards your desired direction and tap.  \n Try it out by moving towards the group of people in front of you! " position="-5 4 -4" tab-size="10" height="20" color="#000" scale="1.7 1.7 1.7"></a-text>
+  <a-box id="Instructions1box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
+    </a-entity>
     
-  <a-text id="Instructions1" value="Instructions: \n 1. Tap to move \n 2. Hold gaze over speech bubble to talk " position="-5 4 -4" tab-size="10" height="20" color="#000" scale="2 2 2"></a-text>
-     <a-box id="Instructions1box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
+    <a-entity id="instruction2" visible="false">
+  <a-text id="Instructions2" align="left" wrap-count ="50"  value="To gain new Social Capital: \n Move the cursor towards the computer icon and wait for the speech bubble to burst. " position="-5 4 -4" tab-size="10" height="20" color="#000" scale="1.7 1.7 1.7"></a-text>
+  <a-box id="Instructions2box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
+    </a-entity>
     
-    <a-text id="Instructions2" value="Start Game!" position="4.2 4 -4" tab-size="10" height="20" color="#FFF" scale="2 2 2"></a-text>
-    <a-box id="Instructions2box" color ="green" position="5.5 4 -4.1" onclick="introToGameScene()"  depth="0.01" height="2" width="2.5" ></a-box> 
-    
-    
+  <a-entity id="instruction3" position = "2.5 0.7 -2" rotation="0 -80 0" visible="false" scale="0.7 0.7 0.7">
+      <a-text id="Instructions5" align="left" wrap-count ="60" value="Currently, you only have computing-related Social Capital. \n Gain other social capital by joining a conversation with both computing and other types of Social Capital." position="-5 4 -4" tab-size="10" height="20" color="#000" scale="2 2 2"></a-text>
+      <a-box id="Instructions5box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
+  </a-entity>
   <!--  <a-text id="onScreenInstructions" value="Hover over the speech bubble on the man's head" position="-6.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text> -->
     
     <a-entity position="0 0 -4.5">
@@ -209,9 +224,39 @@
   <a-entity rotation="0 -225 0" position="3.3 0 -1">
     <a-entity id="tutMan" gltf-model="#man-sitting" scale="0.023 0.023 0.023" ></a-entity>
     <!-- <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#questionMarkIcon" position = "0.1 1.5 -0.3" rotation="0 30 0"></a-entity> -->
-    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1" onclick="proceedingToGame()"></a-entity>
+    <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1"></a-entity>
+<!--       <a-entity id="tutBubble" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1" onclick="proceedingToGame()"></a-entity> -->
       </a-entity>
-      </a-entity>
+<!--       <a-entity id="arrow1">
+        <a-entity arrow="direction: 0 0 -1;length: 0.5" position="3.1 0 0" rotation="0 -10 0"></a-entity>
+        <a-entity arrow="direction: 0 0 -1;length: 0.5" position="2.7 0 1.5" rotation="0 -15 0"></a-entity>
+        <a-entity arrow="direction: 0 0 -1;length: 0.5" position="2.0 0 3" rotation="0 -25 0"></a-entity>
+        <a-entity arrow="direction: 0 0 -1;length: 0.5" position="1.3 0 4" rotation="0 -40 0"></a-entity>
+        <a-entity arrow="direction: 0 0 -1;length: 0.5" position="0.5 0 5" rotation="0 -50 0"></a-entity>
+      </a-entity> -->
+      
+      <a-entity id="arrow1" template="src: #arrow-asset"></a-entity>
+      <a-entity id="tutorialGoingToGameHuman">
+      <a-entity rotation="0 -80 0" position="-3 0 -0.7">
+        <a-entity id="tutMan2" gltf-model="#man-sitting" scale="0.023 0.023 0.023" ></a-entity>
+        <a-entity id="tutBubble2" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1"></a-entity>
+      </a-entity> 
+      <a-entity rotation="0 180 0" position="-2.2 0 -1.8">
+        <a-entity id="tutMan3" gltf-model="#man-sitting" scale="0.023 0.023 0.023" ></a-entity>
+        <a-entity id="tutBubble3" template="src: #bubble-asset" data-src="#vetUnlockableIcon" position="0.42 2.02 0.1"></a-entity>
+      </a-entity>   
+        </a-entity>
+      <a-entity id="arrow2" template="src: #arrow-asset" rotation="0 120 0" position="-1 0 1.7" visible="false" ></a-entity>
+      <a-entity id="startGameTut2Game" visible="false">
+            <a-text rotation="0 80 0" value="You're ready, start the game!" align="center" position="-3.5 3.4 -1.3" tab-size="10" height="20" width="5" color="#FFF" scale="0.5 0.5 0.5"></a-text> 
+            <a-text rotation="0 80 0" id="instruction4" value="Start game" position="-4 3 -1" tab-size="5"
+                  height="20" color="#000" scale="1 1 1">
+            <!-- primitive rectangle acting as button -->
+            <a-box color ="orange" position="0.54 0 -0.01" onclick="introToGameScene()"  depth="0.01" height="0.7" width="1.2" ></a-box>
+
+          </a-text> 
+        </a-entity>
+    </a-entity>
     <!-- Commented out on 6/4 
       
         <a-text id="skipTut" value="Skip Tutorial" position="-2.2 2 -4" tab-size="5"
@@ -241,6 +286,17 @@
     </a-entity> -->
 
     <!-- repositioning of entities due to camera -->
+    <a-entity id="showingScore" position = "0 0 -1" visible = "false" look-at="[camera]">  
+            <a-text id="scoreText" align="center" value="Your score is: " position="-1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="0.7 0.7 0.7">
+            <a-box id="scorebox" color ="orange" position="0 0 -0.1" depth="0.01" height="2" width="3" ></a-box>
+<!--               <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text>  -->
+            </a-text>
+            <a-text id="scoreTextStart" onclick="befIntroToGameScene()" value="Restart" position="1.5 0 0" tab-size="10" height="2" width="6" color="#000" scale="0.7 0.7 0.7">
+            <a-box id="scoreboxStart" color ="green" position="0 0 -0.1" depth="0.01" height="2" width="2" ></a-box>
+<!--               <a-text id="scoreCountdown" color ="orange" position="4.5 0 -0.1" depth="0.01" height="2" width="2" value="5" scale="9 9 9" ></a-text>  -->
+            </a-text>
+            
+    </a-entity> 
 
     <a-entity position="0 -2 -4" id = "mainGameScene" visible = "false">
 
@@ -438,7 +494,9 @@
     <script>
     var myIcons=[];
         myIcons.push("#computingIcon", "#vetUnlockableIcon", "#teacherUnlockableIcon","#musicianUnlockableIcon");
-      
+        
+        var isTutorial=false;
+        var isBefMove=true;
         var count=0;
         var y=1.3;
         var radius=0.5;
@@ -451,6 +509,8 @@
       AFRAME.registerComponent('cursor-listener', {   
         init: function () {
           this.el.addEventListener('mouseenter', function (evt) {
+          // boolean: funciton to check the distance to bubble evt.detail.intersection.point
+            if(evt.detail.intersection.distance < 2){
             // this.setAttribute('style', 'transition','radius 3s linear');
             // this.setAttribute('color', 'green');
             var currentIcon=this.getAttribute('src');
@@ -465,7 +525,7 @@
               this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
            
             }
-            
+            }
           });
           this.el.addEventListener('mouseleave', function (evt) {
             this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 1;to:#FFF');
@@ -473,12 +533,33 @@
             // console.log('I was mouse leave at: ', evt.detail.intersection.point);
           });
           this.el.addEventListener('click', function (evt) {
+            // boolean: funciton to check the distance to bubble evt.detail.intersection.point
+            if(evt.detail.intersection.distance < 2){
             var currentIcon=this.getAttribute('src');
             if(myIcons.includes(currentIcon)){
               this.closest("a-entity").setAttribute('visible', 'false');
               console.log('I was clicked at: ', evt.detail.intersection.point);
+              console.log('The distance of bubble at the moment: ', evt.detail.intersection.distance);
               count++;
+              if(isTutorial && count<=2){
+                var arrow="arrow"+count
+                document.getElementById(arrow).setAttribute('visible', 'false');
+                var arrowNext="arrow"+(count+1)
+                document.getElementById(arrowNext).setAttribute('visible', 'true');
+                console.log(count)
+                if(count===1){
+                  document.getElementById('instruction3').setAttribute('visible', 'true')
+                  document.getElementById('instruction2').setAttribute('visible', 'false')
+                  setTimeout(function(){
+                    console.log(count)
+                    document.getElementById('startGameTut2Game').setAttribute('visible', 'true')
+                    
+                    },3000)
+                }
+              }
               document.getElementById('score').setAttribute('value', 'score: '+count);
+              document.getElementById('icons-display').setAttribute('visible', 'true')
+                document.getElementById('score').setAttribute('visible', 'true')
               if(currentIcon.includes("Unlockable")){
                  //for unlockable icons, replace unlocable string to actual src string
                 myIcons[myIcons.indexOf(currentIcon)]=currentIcon.replace(/Unlockable/g, "");
@@ -499,37 +580,145 @@
                 el.setAttribute('id',src.replace(/#/g,"ID"));
                 // console.log(el);
                 document.getElementById("icons-display").appendChild(el); 
+                
               }
-              // console.log(myIcons);
-             
-              
-              
+              // console.log(myIcons);             
             }
-            
-
+          }
           });
         }
       });
+      AFRAME.registerComponent("arrow", {
+    schema: {
+        direction: {
+            type: "vec3",
+            default: {
+                x: 1,
+                y: 0,
+                z: 0
+            }
+        },
+        length: {
+            type: "number"
+        },
+        color: {
+            type: "color",
+            default: "#ff0"
+        },
+        headLength: {
+            type: "number"
+        },
+        headWidth: {
+            type: "number"
+        }
+    },
+    init: function () {
+        var data = this.data;
+        var direction = new THREE.Vector3(data.direction.x, data.direction.y, data.direction.z);
+        var length = data.length || direction.length();
+        var headLength = data.headLength || length * .2;
+        var headWidth = data.headWidth || headLength * .2;
+        var color = new THREE.Color(data.color);
+        this.arrow = new THREE.ArrowHelper(direction.normalize(), new THREE.Vector3(), length, color, headLength, headWidth);
+        this.el.setObject3D("arrow", this.arrow);
+    },
+    update: function (oldData) {
+        var data = this.data;
+        var diff = AFRAME.utils.diff(data, oldData);
+        if ("color" in diff) {
+            this.arrow.setColor(new THREE.Color(data.color));
+        }
+        var length;
+        if ("direction" in diff) {
+            var direction = new THREE.Vector3(data.direction.x, data.direction.y, data.direction.z);
+            length = direction.length();
+            this.arrow.setDirection(direction.normalize());
+        }
+        if ("direction" in diff && typeof data.length === "undefined" || "length" in diff || "headLength" in diff || "headWidth" in diff) {
+            length = data.length || length;
+            var headLength = data.headLength || length * .2;
+            var headWidth = data.headWidth || headLength * .2;
+            this.arrow.setLength(length, headLength, headWidth);
+        }
+    }
+});
+      
+      // var distanceToInstruction1=document.getElementById('instruction1')
+       AFRAME.registerComponent('instruction-listener', {  
+        init: function () {
+          console.log("in instruction-listener");
+             this.el.addEventListener('componentchanged', function (evt) {
+              if (isTutorial && count===0 && evt.detail.name === 'position') {
+                // Do something.
+                document.getElementById('instruction1').setAttribute('visible', 'false')
+                document.getElementById('instruction2').setAttribute('visible', 'true')
+              }
+            });
+          // while(isBefMove){
+          //   if(this.el.getAttribute('position').x!==0 || this.el.getAttribute('position').y!==0 || this.el.getAttribute('position').z!==0 ){
+          //     console.log(this.el.getAttribute('position'))
+          //     document.getElementById('instruction1').setAttribute('visible', 'false')
+          //     isBefMove=false;
+          //   }
+          // }
+        }})
+      
+       // document.addEventListener('touchStart', function (evt) {
+       //   console.log("in touch start")
+       //     document.getElementById('Instructions1').setAttribute('value', 'In this stage, you’ll learn about some basic moves used in the game. \n To walk to another position: \n Move the cursor towards your desired direction and tap.  \n Try it out by moving towards the group of people in front of you!')
+       // })
+      // var instruction1to2=true;
+      // var instruction2to3=false;
+      // var rigPosition=document.getElementById('rig').detail.intersection.distance;
+//       setInterval(function(evt){
+//         if(instruction1to2){
+// //           check for position of rig
+//           console.log(evt)
+//           console.log(evt.detail.intersection.distance)
+//           console.log(rigPosition)
+//         if(evt.detail.intersection.distance === rigPosition){
+          
+//           document.getElementById('Instructions1').setAttribute('value', "In this stage, you’ll learn about some basic moves used in the game. \n To walk to another position: \n Move the cursor towards your desired direction and tap.  \n Try it out by moving towards the group of people in front of you!")
+          
+//         }}
+//         }, 1000)
+      // function changeInstructionOnMovement(){
+      //           console.log("change instruction on movement");
+      //             }
       var timesOfPlay=0;
+      // var valueScoreCountdown=5;
+      //calc distance using a point
     function showScore(){
         document.getElementById('introScene').setAttribute('visible', 'false')
         document.getElementById('mainGameScene').setAttribute('visible', 'false')
-        document.getElementById('Instructions1').setAttribute('visible', 'false')
-        document.getElementById('Instructions2').setAttribute('visible', 'false')
-        document.getElementById('Instructions1box').setAttribute('visible', 'false')
-        document.getElementById('Instructions2box').setAttribute('visible', 'false')
+        // document.getElementById('Instructions2').setAttribute('visible', 'false')
+        document.getElementById('instruction1').setAttribute('visible', 'false')
+        document.getElementById('tutorialGoingToGameHuman').setAttribute('visible', 'false')
         document.getElementById('tutBubble').setAttribute('visible', 'false')
         document.getElementById('tutMan').setAttribute('visible', 'false')
         document.getElementById('groupInTut').setAttribute('visible', 'false')
         document.getElementById('showingScore').setAttribute('visible', 'true')
+        // valueScoreCountdown=5;
+        // setInterval(function(){
+        //   // var valueScoreCountdown=document.getElementById('scoreCountdown').getAttribute('value')
+        //   if(valueScoreCountdown>0){
+        //     valueScoreCountdown--;
+        //    document.getElementById('scoreCountdown').setAttribute('value', valueScoreCountdown)
+        //   }
+        // }, 1000)
         //           reloading game
-        document.getElementById('scoreText').setAttribute('value','Your Score is: '+count+'. Starting again in 5s.')
-        
+        document.getElementById('scoreText').setAttribute('value','Your Score is: '+count+'.')       
          var elem = document.getElementById("mainGameScene");
          elem.parentNode.removeChild(elem);
-         parent.appendChild(mainGame);
+         parent.appendChild(mainGame);      
+
+  }
       
-         var i;
+        function befIntroToGameScene(){  
+          timesOfPlay++;
+                    count=0;
+          document.getElementById('score').setAttribute('value', 'score: '+count);
+          var i;
           for (i = 1; i < myIcons.length; i++) { 
               var currentIcon=myIcons[i];
               if (!currentIcon.includes("Unlockable")){
@@ -543,71 +732,75 @@
               }
           
           }
-        myIcons=[];
-         myIcons.push("#computingIcon", "#vetUnlockableIcon", "#teacherUnlockableIcon","#musicianUnlockableIcon");
-         iconsDisplayX=0;
-         
-         // var elem2 = document.getElementById('icons-display')
-         // elem2.parentNode.removeChild(elem2);
-
-        if(timesOfPlay===0){
-        setInterval(function(){
-          var valueScoreCountdown=document.getElementById('scoreCountdown').getAttribute('value')
-          if(valueScoreCountdown>0){
-           document.getElementById('scoreCountdown').setAttribute('value', valueScoreCountdown-1)
-          }
-        }, 1000)
-        } 
-        setTimeout(function(){
-          timesOfPlay++;
+           myIcons=[];
+           myIcons.push("#computingIcon", "#vetUnlockableIcon", "#teacherUnlockableIcon","#musicianUnlockableIcon");
+           iconsDisplayX=0;
           introToGameScene()
-        },5000)
-  }
-      
-
+        }
         function introToGameScene() {
-          count=0;
-          document.getElementById('score').setAttribute('value', 'score: '+count);
+          isTutorial=false;
+          document.getElementById('arrow2').setAttribute('visible', 'false')
+          document.getElementById('startGameTut2Game').setAttribute('visible', 'false')
+          document.getElementById('time').setAttribute('visible', 'true')
+          document.getElementById('icons-display').setAttribute('visible', 'true')
+          document.getElementById('score').setAttribute('visible', 'true')
           document.getElementById('introScene').setAttribute('visible', 'false')
           document.getElementById('mainGameScene').setAttribute('visible', 'true')
-          document.getElementById('Instructions1').setAttribute('visible', 'false')
-          document.getElementById('Instructions2').setAttribute('visible', 'false')
-          document.getElementById('Instructions1box').setAttribute('visible', 'false')
-          document.getElementById('Instructions2box').setAttribute('visible', 'false')
+          document.getElementById('instruction1').setAttribute('visible', 'false')
+          document.getElementById('instruction3').setAttribute('visible', 'false')
+          // document.getElementById('Instructions2').setAttribute('visible', 'false')
+          // document.getElementById('Instructions2box').setAttribute('visible', 'false')
           document.getElementById('tutBubble').setAttribute('visible', 'false')
           document.getElementById('tutMan').setAttribute('visible', 'false')
           document.getElementById('groupInTut').setAttribute('visible', 'false')
           document.getElementById('proceedingToGame3').setAttribute('visible', 'false')
           document.getElementById('showingScore').setAttribute('visible', 'false')
+          var timer=60;
+          setInterval(function(){
+          if(timer>=0){
+            document.getElementById('time').setAttribute('value', 'Time: '+timer +'s' )
+            timer--
+          }
+            },1000)
+          
           setTimeout(function(){
-            document.getElementById('scoreCountdown').setAttribute('value', 5)
+            // document.getElementById('scoreCountdown').setAttribute('value', 5)
+            
              showScore()
-            },30000)
+            },6000)
 
         }
       
         function proceedingToGame() {
-    document.getElementById('introScene').setAttribute('visible', 'false')
-    // document.getElementById('mainGameScene').setAttribute('visible', 'true')
-    document.getElementById('Instructions1').setAttribute('visible', 'false')
-    document.getElementById('Instructions2').setAttribute('visible', 'false')
-    document.getElementById('Instructions1box').setAttribute('visible', 'false')
-    document.getElementById('Instructions2box').setAttribute('visible', 'false')
-    document.getElementById('tutBubble').setAttribute('visible', 'false')
-    document.getElementById('tutMan').setAttribute('visible', 'false')
-    document.getElementById('groupInTut').setAttribute('visible', 'false')
-    document.getElementById('showingScore').setAttribute('visible', 'false')
-    document.getElementById('proceedingToGame3').setAttribute('visible', 'true')
-    setInterval(function(){
-  
-      var instructCountDownValue=document.getElementById('InstructionsCountdown').getAttribute('value')
-      if(instructCountDownValue>0){
-     document.getElementById('InstructionsCountdown').setAttribute('value', instructCountDownValue-1)}}, 1000)
-    setTimeout(function(){
-    introToGameScene()
-    },5000)
-    
-  }
+          document.getElementById('introScene').setAttribute('visible', 'false')
+          // document.getElementById('mainGameScene').setAttribute('visible', 'true')
+          document.getElementById('instruction1').setAttribute('visible', 'false')
+          // document.getElementById('Instructions2').setAttribute('visible', 'false')
+          // document.getElementById('Instructions2box').setAttribute('visible', 'false')
+          document.getElementById('tutBubble').setAttribute('visible', 'false')
+          document.getElementById('tutMan').setAttribute('visible', 'false')
+          document.getElementById('groupInTut').setAttribute('visible', 'false')
+          document.getElementById('showingScore').setAttribute('visible', 'false')
+          document.getElementById('proceedingToGame3').setAttribute('visible', 'true')
+          setInterval(function(){
+
+            var instructCountDownValue=document.getElementById('InstructionsCountdown').getAttribute('value')
+            if(instructCountDownValue>0){
+           document.getElementById('InstructionsCountdown').setAttribute('value', instructCountDownValue-1)}}, 1000)
+          setTimeout(function(){
+          introToGameScene()
+          },5000)
+
+
+        }
+        function introToTutScene() {
+          isTutorial=true
+          document.getElementById('instruction1').setAttribute('visible', 'true')
+          document.getElementById('introScene').setAttribute('visible', 'false')
+          document.getElementById('tutorialScene').setAttribute('visible', 'true')
+          document.getElementById('proceedingToGame3').setAttribute('visible', 'false')
+          document.getElementById('showingScore').setAttribute('visible', 'false')
+        }
     </script>
   </a-entity>
 </a-scene>
@@ -615,12 +808,7 @@
 
 
     
-  function introToTutScene() {
-    document.getElementById('introScene').setAttribute('visible', 'false')
-    document.getElementById('tutorialScene').setAttribute('visible', 'true')
-    document.getElementById('proceedingToGame3').setAttribute('visible', 'false')
-    document.getElementById('showingScore').setAttribute('visible', 'false')
-  }
+
     
 
     
