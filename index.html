@@ -155,7 +155,7 @@
             movement-controls>
         <a-entity camera look-controls wasd-controls universal-controls instruction-listener id="playerCamera">
           <!-- cursor-->
-          <a-entity position="0 0 -0.1"
+          <a-entity position="0 0 -0.5"
                     geometry="primitive: ring; radiusOuter: 0.0022;
                               radiusInner: 0.0015;"
                     material="color: cyan; shader: flat"
@@ -213,7 +213,7 @@
     </a-entity>
     
   <a-entity id="instruction3" position = "2.5 0.7 -2" rotation="0 -80 0" visible="false" scale="0.7 0.7 0.7">
-      <a-text id="Instructions5" align="left" wrap-count ="60" value="Currently, you only have computing-related Social Capital. \n Gain other social capital by joining a conversation with both computing and other types of Social Capital." position="-5 4 -4" tab-size="10" height="20" color="#000" scale="2 2 2"></a-text>
+      <a-text id="Instructions5" align="left" wrap-count ="60" value="Currently, you only have computing-related Social Capital. \n Gain other social capital by joining a conversation with both \n computing and other types of Social Capital." position="-5 4 -4" tab-size="10" height="20" color="#000" scale="2 2 2"></a-text>
       <a-box id="Instructions5box" color ="orange" position="-1 4 -4.1" depth="0.01" height="2" width="8.5" ></a-box> 
   </a-entity>
   <!--  <a-text id="onScreenInstructions" value="Hover over the speech bubble on the man's head" position="-6.9 4 -4" tab-size="10" height="20" color="#FFF" scale="3 3 3"></a-text> -->
@@ -312,26 +312,26 @@
   <!-- for sound <a-sound src="src: https://cdn.glitch.com/7a75544e-dc8e-4b51-bf67-cb46ef0b1426%2FCrowd_Talking.mp3?1522221667543" autoplay="true" position="0 2 5"></a-sound> -->
             
       <a-entity position="-2.3 0 -3" rotation="0 220 0"><!-- man in front of nike bag guy-->
-      <!-- Group 2 -->       <a-entity id="posHuman1" gltf-model="#man-standing" scale="0.020 0.020 0.020"  position="0 0 0"></a-entity>
+      <!-- Group 2 -->       <a-entity id="posHuman1" gltf-model="#man-standing" scale="0.025 0.025 0.025"  position="0 0 0"></a-entity>
                               <a-entity id="bubble1" template="src: #bubble-asset" data-src="#teacherIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       <a-entity rotation="0 -80 0" position="-2.2 0 -1.3"><!-- man in front of cup lady-->
-          <a-entity id="posHuman2" gltf-model="#man-standing" scale="0.020 0.020 0.020" ></a-entity>
+          <a-entity id="posHuman2" gltf-model="#man-standing" scale="0.025 0.025 0.025" ></a-entity>
           <a-entity id="bubble4" template="src: #bubble-asset" data-src="#computingIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>             
       
             <!-- Group3 -->
       <a-entity rotation="0 220 0" position="-1.5 0 1"><!-- man in front of maroon sblazer lady-->
-       <a-entity id="posHuman3" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
+       <a-entity id="posHuman3" gltf-model="#man-with-bag" scale="0.025 0.025 0.025" ></a-entity>
        <a-entity id="bubble2" template="src: #bubble-asset" data-src="#vetIcon" position="0.32 1.9 -0.1"></a-entity>
       </a-entity>
       
       <a-entity rotation="0 -75 0" position="-3 0 0.5"> <!-- man in front of green blazer guy-->
-        <a-entity id="posHuman13" gltf-model="#man-with-bag" scale="0.020 0.020 0.020" ></a-entity>
+        <a-entity id="posHuman13" gltf-model="#man-with-bag" scale="0.025 0.025 0.025" ></a-entity>
         <a-entity id="bubble1a" template="src: #bubble-asset" data-src="#teacherUnlockableIcon" position="0.32 1.9 -0.1"></a-entity>                        
       </a-entity>
       <a-entity rotation="0 270 0" position="0.7 0 2"><!-- man in front of two guys-->
-         <a-entity id="posHuman14" gltf-model="#man-standing" scale="0.020 0.022 0.020" ></a-entity>
+         <a-entity id="posHuman14" gltf-model="#man-standing" scale="0.025 0.027 0.025" ></a-entity>
          <a-entity id="bubble1b" template="src: #bubble-asset" data-src="#teacherIcon" position="0.32 1.9 -0.1"></a-entity>  
        </a-entity>
       <!-- Group4 of 1 musician and 3 vets-->
@@ -510,86 +510,105 @@
         var parent=mainGame.parentNode
         var iconBoard=document.getElementById('icons-display')
       // Component to change to a sequential color on click.
-      AFRAME.registerComponent('cursor-listener', {   
+      AFRAME.registerComponent('cursor-listener', {
+        schema:{default:false},
         init: function () {
           this.el.addEventListener('mouseenter', function (evt) {
+            console.log("in mouseenter")
+        this.default=true;
           // boolean: funciton to check the distance to bubble evt.detail.intersection.point
             if(evt.detail.intersection.distance < 2){
-            // this.setAttribute('style', 'transition','radius 3s linear');
-            // this.setAttribute('color', 'green');
-            var currentIcon=this.getAttribute('src');
-            if(myIcons.includes(currentIcon)){
-            
-              this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 15;to:#0F0');
-              this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
-              // this.setAttribute('animation__position', 'property: position; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0 2 0');
-              // console.log('I was mouse enter at: ', evt.detail.intersection.point);
-            }else{
-              this.setAttribute('animation__color', 'property: material.color;dur: 1000;loop: 15;to:#F00');
-              this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
-           
-            }
+                console.log("in mouseenter distance < 2")
+                var currentIcon=this.getAttribute('src');
+                if(myIcons.includes(currentIcon)){
+                  console.log("in mouseenter incon includes")
+                  this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 15;to:#0F0');
+                  this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
+                  function burst(){
+                      console.log(this.default)
+                      if(this.default){
+                      console.log("in click if icon is collected")
+                      this.closest("a-entity").setAttribute('visible', 'false');
+                      count++;
+                      if(isTutorial && count<=2){
+                        console.log("in click if tutorial and count <=2")
+                        var arrow="arrow"+count
+                        document.getElementById(arrow).setAttribute('visible', 'false');
+                        if(count===1){
+//                           show arrow 2
+                          console.log("in click if count ===1")
+                          var arrowNext="arrow"+(count+1)
+                          document.getElementById(arrowNext).setAttribute('visible', 'true');
+//                           show instruction 3
+                          document.getElementById('instruction3').setAttribute('visible', 'true')
+                          document.getElementById('instruction2').setAttribute('visible', 'false')
+//                           show game start button
+                          setTimeout(function(){
+                            console.log(count)
+                            document.getElementById('startGameTut2Game').setAttribute('visible', 'true')
+
+                            },3000)
+                        }//end if count ==1
+                     }//end if isTutorial and count <=2
+//                         show score and collected icon board
+                     
+                      if(currentIcon.includes("Unlockable")){
+                        console.log("in click unlockable icon")
+                         //for unlockable icons, replace unlocable string to actual src string
+                        myIcons[myIcons.indexOf(currentIcon)]=currentIcon.replace(/Unlockable/g, "");
+                        // Create a plane for new icon
+                        iconsDisplayX += 0.33;
+                        // var position =iconsDisplayX+" 0 0";
+                        var src=currentIcon.replace(/Unlockable/g, "")+"UI";
+                        // console.log(position);
+                        console.log(src);
+                        var el = document.createElement('a-plane');
+                        // console.log(el);
+                        el.setAttribute('color','#CCC');
+                        el.setAttribute('height','0.3');
+                        el.setAttribute('width','0.3');
+                        el.setAttribute('position',{x:iconsDisplayX,y:0,z:0});
+                        el.setAttribute('src',src);
+                        el.setAttribute('id',src.replace(/#/g,"ID"));
+                        // console.log(el);
+                        document.getElementById("icons-display").appendChild(el); 
+
+                      }//end if icon is alr collected
+                      document.getElementById('score').setAttribute('value', 'score: '+count);
+                      document.getElementById('icons-display').setAttribute('visible', 'true')
+                      document.getElementById('score').setAttribute('visible', 'true')
+                      console.log(currentIcon)
+                      }//end if hover = true
+                    this.default=false;
+                  }
+                  var burstThis = burst.bind(this);
+                  setTimeout(burstThis,3000)
+                }else{
+                  console.log("in mouseenter else, icon is not collected yet")
+                  this.setAttribute('animation__color', 'property: material.color;dur: 1000;loop: 15;to:#F00');
+                  // this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeInSine; loop: false; to: 0.2');       
+                }
             }
           });
           this.el.addEventListener('mouseleave', function (evt) {
+            console.log("in mouseleave")
+            this.default=false;
             this.setAttribute('animation__color', 'property: material.color;dur: 3000;loop: 1;to:#FFF');
             this.setAttribute('animation__radius', 'property: radius; dur: 3000; delay: 0;easing: easeOutSine; loop: false; to: 0.1');
             // console.log('I was mouse leave at: ', evt.detail.intersection.point);
           });
-          this.el.addEventListener('click', function (evt) {
-            // boolean: funciton to check the distance to bubble evt.detail.intersection.point
-            if(evt.detail.intersection.distance < 2){
-            var currentIcon=this.getAttribute('src');
-            if(myIcons.includes(currentIcon)){
-              this.closest("a-entity").setAttribute('visible', 'false');
-              console.log('I was clicked at: ', evt.detail.intersection.point);
-              console.log('The distance of bubble at the moment: ', evt.detail.intersection.distance);
-              count++;
-              if(isTutorial && count<=2){
-                var arrow="arrow"+count
-                document.getElementById(arrow).setAttribute('visible', 'false');
-                var arrowNext="arrow"+(count+1)
-                document.getElementById(arrowNext).setAttribute('visible', 'true');
-                console.log(count)
-                if(count===1){
-                  document.getElementById('instruction3').setAttribute('visible', 'true')
-                  document.getElementById('instruction2').setAttribute('visible', 'false')
-                  setTimeout(function(){
-                    console.log(count)
-                    document.getElementById('startGameTut2Game').setAttribute('visible', 'true')
-                    
-                    },3000)
-                }
-              }
-              document.getElementById('score').setAttribute('value', 'score: '+count);
-              document.getElementById('icons-display').setAttribute('visible', 'true')
-                document.getElementById('score').setAttribute('visible', 'true')
-              if(currentIcon.includes("Unlockable")){
-                 //for unlockable icons, replace unlocable string to actual src string
-                myIcons[myIcons.indexOf(currentIcon)]=currentIcon.replace(/Unlockable/g, "");
-                
-                // Create a plane for new icon
-                iconsDisplayX += 0.33;
-                // var position =iconsDisplayX+" 0 0";
-                var src=currentIcon.replace(/Unlockable/g, "")+"UI";
-                // console.log(position);
-                console.log(src);
-                var el = document.createElement('a-plane');
-                // console.log(el);
-                el.setAttribute('color','#CCC');
-                el.setAttribute('height','0.3');
-                el.setAttribute('width','0.3');
-                el.setAttribute('position',{x:iconsDisplayX,y:0,z:0});
-                el.setAttribute('src',src);
-                el.setAttribute('id',src.replace(/#/g,"ID"));
-                // console.log(el);
-                document.getElementById("icons-display").appendChild(el); 
-                
-              }
-              // console.log(myIcons);             
-            }
-          }
-          });
+//           this.el.addEventListener('click', function (evt) {
+//             console.log("in click")
+//             // boolean: funciton to check the distance to bubble evt.detail.intersection.point
+//             if(evt.detail.intersection.distance < 2){
+//               console.log("in click if < 2")
+//             var currentIcon=this.getAttribute('src');
+//             if(myIcons.includes(currentIcon)){
+
+//               // console.log(myIcons);             
+//             }
+//           }
+//           });
         }
       });
       AFRAME.registerComponent("arrow", {
@@ -651,6 +670,20 @@
        AFRAME.registerComponent('instruction-listener', {  
         init: function () {
           console.log("in instruction-listener");
+          const sceneEl = this.el.sceneEl;
+          const canvasEl = sceneEl.canvas;
+          var isMoving = false;
+          canvasEl.addEventListener('touchstart', function () {
+            if (isTutorial && count===0) {
+                // Do something.
+                document.getElementById('instruction1').setAttribute('visible', 'false')
+                document.getElementById('instruction2').setAttribute('visible', 'true')
+              }
+            });
+
+          canvasEl.addEventListener('touchend', () => {
+            this.isMoving = false;
+        })
              this.el.addEventListener('componentchanged', function (evt) {
               if (isTutorial && count===0 && evt.detail.name === 'position') {
                 // Do something.
@@ -759,6 +792,7 @@
           document.getElementById('score').setAttribute('visible', 'true')
           document.getElementById('introScene').setAttribute('visible', 'false')
           document.getElementById('mainGameScene').setAttribute('visible', 'true')
+          document.getElementById('tutorialGoingToGameHuman').setAttribute('visible', 'true')
           document.getElementById('instruction1').setAttribute('visible', 'false')
           document.getElementById('instruction3').setAttribute('visible', 'false')
           // document.getElementById('Instructions2').setAttribute('visible', 'false')
