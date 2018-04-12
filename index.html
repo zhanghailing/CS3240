@@ -128,6 +128,7 @@
         <a-sphere src="${src}" color="#CCC" cursor-listener radius="0.1" position="0 0 0"></a-sphere>
       </a-entity>
     </script>
+<!--  in tutorial, when count is equal to 1, arrow with id arrow1 would be removed and arrow with id arrow2 would be shown    -->
     <script id="arrow-asset" type="text/html">
       <a-entity>
           <a-entity arrow="direction: 0 0 -1;length: 0.5" position="3.1 0 0" rotation="0 -10 0"></a-entity>
@@ -234,11 +235,12 @@
         <a-entity arrow="direction: 0 0 -1;length: 0.5" position="1.3 0 4" rotation="0 -40 0"></a-entity>
         <a-entity arrow="direction: 0 0 -1;length: 0.5" position="0.5 0 5" rotation="0 -50 0"></a-entity>
       </a-entity> -->
-      
+      <!--  in tutorial, when count is equal to 1, arrow with id arrow1 would be removed and arrow with id arrow2 would be shown    -->
       <a-entity id="arrow1" template="src: #arrow-asset"></a-entity>
+<!--  Add tutorial human inside this tag: tutorialGoingToGameHuman      -->
       <a-entity id="tutorialGoingToGameHuman">
       <a-entity rotation="0 -80 0" position="-3 0 -0.7">
-        <a-entity id="tutMan2" gltf-model="#man-sitting" scale="0.023 0.023 0.023" ></a-entity>
+        <a-entity id="tutMan2" gltf-model="#man-sitting" scale="0.023 0.023 0.023"></a-entity>
         <a-entity id="tutBubble2" template="src: #bubble-asset" data-src="#computingIcon" position="0.42 2.02 0.1"></a-entity>
       </a-entity> 
       <a-entity rotation="0 180 0" position="-2.2 0 -1.8">
@@ -246,7 +248,9 @@
         <a-entity id="tutBubble3" template="src: #bubble-asset" data-src="#vetUnlockableIcon" position="0.42 2.02 0.1"></a-entity>
       </a-entity>   
         </a-entity>
+      <!--  in tutorial, when count is equal to 1, arrow with id arrow1 would be removed and arrow with id arrow2 would be shown    -->
       <a-entity id="arrow2" template="src: #arrow-asset" rotation="0 120 0" position="-1 0 1.7" visible="false" ></a-entity>
+<!--  Button would be shown 3s after clicking the first computing icon      -->
       <a-entity id="startGameTut2Game" visible="false">
             <a-text rotation="0 80 0" value="You're ready, start the game!" align="center" position="-3.5 3.4 -1.3" tab-size="10" height="20" width="5" color="#FFF" scale="0.5 0.5 0.5"></a-text> 
             <a-text rotation="0 80 0" id="instruction4" value="Start game" position="-4 3 -1" tab-size="5"
@@ -654,15 +658,21 @@
                 document.getElementById('instruction2').setAttribute('visible', 'true')
               }
             });
-          // while(isBefMove){
-          //   if(this.el.getAttribute('position').x!==0 || this.el.getAttribute('position').y!==0 || this.el.getAttribute('position').z!==0 ){
-          //     console.log(this.el.getAttribute('position'))
-          //     document.getElementById('instruction1').setAttribute('visible', 'false')
-          //     isBefMove=false;
-          //   }
-          // }
         }})
       
+      
+      
+        //      AFRAME.registerComponent('show-on-near', {  
+        //       init: function () {
+        //         console.log("in show-on-near");
+        //            this.el.addEventListener('componentchanged', function (evt) {
+        //              console.log(evt.detail.intersection.distance)
+        //             if (isTutorial && evt.detail.intersection.distance < 6) {
+        //               // Do something.
+        //              document.getElementById('startGameTut2Game').setAttribute('visible', 'true')
+        //             }
+        //           });
+        // }})
        // document.addEventListener('touchStart', function (evt) {
        //   console.log("in touch start")
        //     document.getElementById('Instructions1').setAttribute('value', 'In this stage, you’ll learn about some basic moves used in the game. \n To walk to another position: \n Move the cursor towards your desired direction and tap.  \n Try it out by moving towards the group of people in front of you!')
@@ -698,6 +708,9 @@
         document.getElementById('tutMan').setAttribute('visible', 'false')
         document.getElementById('groupInTut').setAttribute('visible', 'false')
         document.getElementById('showingScore').setAttribute('visible', 'true')
+        document.getElementById('time').setAttribute('visible', 'false')
+        document.getElementById('icons-display').setAttribute('visible', 'false')
+        document.getElementById('score').setAttribute('visible', 'false')
         // valueScoreCountdown=5;
         // setInterval(function(){
         //   // var valueScoreCountdown=document.getElementById('scoreCountdown').getAttribute('value')
